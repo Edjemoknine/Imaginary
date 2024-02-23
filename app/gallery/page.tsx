@@ -2,14 +2,16 @@ import CloudIMG from "@/components/shared/CloudIMG";
 import UploadButton from "@/components/shared/UploadButton";
 import cloudinary from "cloudinary";
 
-type serachResults = {
+export type serachResults = {
   public_id: string;
+  tags: string[];
 };
 const Gallery = async () => {
   const results = (await cloudinary.v2.search
     .expression("resource_type:image")
     .sort_by("created_at", "desc")
-    .max_results(30)
+    .with_field("tags")
+    .max_results(4)
     .execute()) as { resources: serachResults[] };
   console.log(results);
   return (
@@ -27,6 +29,8 @@ const Gallery = async () => {
             height="300"
             key={img.public_id}
             src={img.public_id}
+            public_id={img.public_id}
+            img={img}
           />
         ))}
       </div>

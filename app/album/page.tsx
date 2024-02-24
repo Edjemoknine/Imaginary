@@ -20,9 +20,11 @@ const Albums = async () => {
         <h1 className="text-4xl font-bold">Albums</h1>
       </div>
 
-      {folders.map((folder, i) => (
-        <AlbumCard key={i} folder={folder} />
-      ))}
+      <div className="grid grid-cols-3 pt-6 gap-3">
+        {folders.map((folder, i) => (
+          <AlbumCard key={i} folder={folder} />
+        ))}
+      </div>
     </section>
   );
 };

@@ -13,7 +13,7 @@ const Gallery = async () => {
     .expression("resource_type:image")
     .sort_by("created_at", "desc")
     .with_field("tags")
-    .max_results(30)
+    .max_results(60)
     .execute()) as { resources: serachResults[] };
   // console.log(results);
   return (

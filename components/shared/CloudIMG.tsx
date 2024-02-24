@@ -5,6 +5,7 @@ import { addFavorite } from "@/app/gallery/actions";
 import { useState, useTransition } from "react";
 import { serachResults } from "@/app/gallery/page";
 import { useRouter } from "next/navigation";
+import DropDownMenu from "./DropDownMenu";
 
 const CloudIMG = (
   props: any & serachResults,
@@ -32,7 +33,11 @@ const CloudIMG = (
           });
         }}
         size={20}
-        className="absolute hover:text-red-500 cursor-pointer top-3 right-3"
+        className="absolute hover:text-red-500 cursor-pointer top-3 left-3"
+      />
+      <DropDownMenu
+        image={props.img}
+        className="absolute hover:text-blue-500 cursor-pointer top-2 right-2"
       />
     </div>
   );

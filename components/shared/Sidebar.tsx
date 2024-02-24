@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import { Album, Image, Heart, GalleryHorizontal } from "lucide-react";
 export function Sidebar({}) {
   const pathname = usePathname();
   return (
@@ -21,19 +21,8 @@ export function Sidebar({}) {
               className="w-full justify-start"
             >
               <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="mr-2 h-4 w-4"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <polygon points="10 8 16 12 10 16 10 8" />
-                </svg>
+                <Image size={18} className="mr-2" />
+
                 <Link href={"/gallery"}>Gallery</Link>
               </div>
             </Button>
@@ -63,26 +52,14 @@ export function Sidebar({}) {
           </h2>
           <div className="space-y-1">
             <Button
-              variant={pathname === "/albums" && "secondary"}
+              variant={pathname === "/album" && "secondary"}
               className="w-full justify-start"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <path d="M21 15V6" />
-                <path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                <path d="M12 12H3" />
-                <path d="M16 6H3" />
-                <path d="M12 18H3" />
-              </svg>
-              Albums
+              <div className="flex gap-2">
+                {/* <Heart size={18} className="mr-2" /> */}
+                <Album size={18} className="" />
+                <Link href={"/album"}>Albums</Link>
+              </div>
             </Button>
             <Button
               asChild
@@ -90,19 +67,7 @@ export function Sidebar({}) {
               className="w-full justify-start"
             >
               <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="mr-2 h-4 w-4"
-                >
-                  <circle cx="8" cy="18" r="4" />
-                  <path d="M12 18V2l7 4" />
-                </svg>
+                <Heart size={18} className="mr-2" />
                 <Link href={"/favorite"}>Favorites</Link>
               </div>
             </Button>

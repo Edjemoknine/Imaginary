@@ -1,9 +1,12 @@
+"use client";
+
 import { cn } from "@/lib/utils";
-// import { Button } from "@/registry/new-york/ui/button";
-// import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Sidebar({}) {
+  const pathname = usePathname();
   return (
     <div className={cn("pb-12 w-52")}>
       <div className="space-y-4 py-4">
@@ -12,21 +15,27 @@ export function Sidebar({}) {
             Discover
           </h2>
           <div className="space-y-1">
-            <Button variant="secondary" className="w-full justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polygon points="10 8 16 12 10 16 10 8" />
-              </svg>
-              Gallery
+            <Button
+              asChild
+              variant={pathname === "/gallery" && "secondary"}
+              className="w-full justify-start"
+            >
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mr-2 h-4 w-4"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polygon points="10 8 16 12 10 16 10 8" />
+                </svg>
+                <Link href={"/gallery"}>Gallery</Link>
+              </div>
             </Button>
             <Button variant="ghost" className="w-full justify-start">
               <svg
@@ -53,7 +62,10 @@ export function Sidebar({}) {
             Library
           </h2>
           <div className="space-y-1">
-            <Button variant="ghost" className="w-full justify-start">
+            <Button
+              variant={pathname === "/albums" && "secondary"}
+              className="w-full justify-start"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -72,21 +84,27 @@ export function Sidebar({}) {
               </svg>
               Albums
             </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <circle cx="8" cy="18" r="4" />
-                <path d="M12 18V2l7 4" />
-              </svg>
-              Favorites
+            <Button
+              asChild
+              variant={pathname === "/favorite" && "secondary"}
+              className="w-full justify-start"
+            >
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mr-2 h-4 w-4"
+                >
+                  <circle cx="8" cy="18" r="4" />
+                  <path d="M12 18V2l7 4" />
+                </svg>
+                <Link href={"/favorite"}>Favorites</Link>
+              </div>
             </Button>
           </div>
         </div>

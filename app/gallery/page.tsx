@@ -1,6 +1,8 @@
 import CloudIMG from "@/components/shared/CloudIMG";
 import UploadButton from "@/components/shared/UploadButton";
 import cloudinary from "cloudinary";
+import { unstable_noStore } from "next/cache";
+unstable_noStore();
 
 export type serachResults = {
   public_id: string;
@@ -11,9 +13,9 @@ const Gallery = async () => {
     .expression("resource_type:image")
     .sort_by("created_at", "desc")
     .with_field("tags")
-    .max_results(4)
+    .max_results(30)
     .execute()) as { resources: serachResults[] };
-  console.log(results);
+  // console.log(results);
   return (
     <section className="pt-7 px-4">
       <div className="flex justify-between">
@@ -21,7 +23,7 @@ const Gallery = async () => {
         <UploadButton />
       </div>
 
-      <div className="grid md:grid-cols-4 pt-10 gap-4 ">
+      <div className="md:columns-4 columns-2 space-y-2 pt-10 gap-2 ">
         {results?.resources.map((img) => (
           <CloudIMG
             width="400"

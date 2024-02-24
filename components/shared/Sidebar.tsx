@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Album, Image, Heart, GalleryHorizontal } from "lucide-react";
+import AlbumSubNav from "./AlbumSubNav";
 export function Sidebar({}) {
   const pathname = usePathname();
   return (
@@ -61,6 +62,7 @@ export function Sidebar({}) {
                 <Link href={"/album"}>Albums</Link>
               </div>
             </Button>
+            {/* <AlbumSubNav/> */}
             <Button
               asChild
               variant={pathname === "/favorite" && "secondary"}

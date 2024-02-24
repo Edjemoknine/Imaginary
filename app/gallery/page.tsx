@@ -1,4 +1,5 @@
 import CloudIMG from "@/components/shared/CloudIMG";
+import SearchForm from "@/components/shared/SearchForm";
 import UploadButton from "@/components/shared/UploadButton";
 import cloudinary from "cloudinary";
 import { unstable_noStore } from "next/cache";
@@ -8,9 +9,14 @@ export type serachResults = {
   public_id: string;
   tags: string[];
 };
-const Gallery = async () => {
+type Props = {
+  searchParams: {
+    search: string;
+  };
+};
+const Gallery = async ({ searchParams: { search } }: Props) => {
   const results = (await cloudinary.v2.search
-    .expression("resource_type:image")
+    .expression(`resource_type:image${search ? ` AND tags=${search}` : ""}`)
     .sort_by("created_at", "desc")
     .with_field("tags")
     .max_results(60)
@@ -22,6 +28,7 @@ const Gallery = async () => {
         <h1 className="text-4xl font-bold">Gallery</h1>
         <UploadButton />
       </div>
+      <SearchForm initialState={search} />
 
       <div className="md:columns-4 columns-2 space-y-2 pt-10 gap-2 ">
         {results?.resources.map((img) => (

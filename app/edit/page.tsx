@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { CldImage } from "next-cloudinary";
 import { useState } from "react";
 
@@ -11,12 +12,13 @@ type Props = {
 };
 const Edit = ({ searchParams: { publicId } }: Props) => {
   const [Transformation, setTransformation] = useState("");
+  const [prompt, setPrompt] = useState<string>("");
   return (
     <section className="pt-7 px-4">
       <div className="flex justify-between">
         <h1 className="text-4xl font-bold">Edit {publicId}</h1>
       </div>
-      <div className="my-6 flex items-center gap-4">
+      <div className="mt-6 mb-4 flex items-center gap-4">
         <Button
           onClick={() => setTransformation("")}
           className="mb-4"
@@ -75,6 +77,15 @@ const Edit = ({ searchParams: { publicId } }: Props) => {
           opacity
         </Button>
       </div>
+      <div>
+        <Input
+          type="text"
+          value={prompt}
+          className="max-w-xl w-full mb-4"
+          placeholder="Add Prompt to Generate to add things"
+          onChange={(e) => setPrompt(e.target.value)}
+        />
+      </div>
       <div className="grid grid-cols-2 gap-10">
         <CldImage alt="Image" width="700" height="900" src={publicId} />
         {Transformation === "generative-fill" && (
@@ -83,7 +94,9 @@ const Edit = ({ searchParams: { publicId } }: Props) => {
             alt="Image"
             width="700"
             height="900"
-            fillBackground
+            fillBackground={{
+              prompt,
+            }}
             crop="pad"
           />
         )}

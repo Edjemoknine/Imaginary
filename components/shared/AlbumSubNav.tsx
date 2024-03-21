@@ -11,8 +11,8 @@ const AlbumSubNav = async () => {
   return (
     <>
       {folders.map((folder) => (
-        <Button asChild variant={"ghost"} key={folder.name}>
-          <Link href={`/album/${folder.path}`}>{folder.name}</Link>
+        <Button asChild variant={"ghost"} key={folder?.name}>
+          <Link href={`/album/${folder?.path}`}>{folder?.name}</Link>
         </Button>
       ))}
     </>

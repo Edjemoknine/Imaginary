@@ -16,7 +16,7 @@ const UploadButton = () => {
       <div className="flex gap-2 ">
         <Upload size={20} />
         <CldUploadButton
-          onUpload={(result: UploadResult) => {
+          onUpload={(result: any) => {
             setTimeout(() => {
               Router.refresh();
             }, 1500);

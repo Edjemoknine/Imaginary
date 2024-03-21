@@ -23,9 +23,9 @@ const FavoriteList = ({ resources }: { resources: serachResults[] }) => {
           src={img.public_id}
           public_id={img.public_id}
           img={img}
-          onUnheart={(unheartedResource) => {
-            setResourcesState((currentResources) => {
-              return currentResources.filter((resource) => {
+          onUnheart={(unheartedResource:any) => {
+            setResourcesState((currentResources:any) => {
+              return currentResources.filter((resource:any) => {
                 return resource.public_id !== unheartedResource.public_id;
               });
             });

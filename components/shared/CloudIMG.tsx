@@ -14,29 +14,29 @@ const CloudIMG = (
   const [isPending, startTransition] = useTransition();
 
   const [isFavorite, setIsFavorite] = useState(
-    props.img.tags.includes("favorite")
+    props?.img.tags.includes("favorite")
   );
   const Router = useRouter();
   return (
     <div className="relative">
-      <CldImage {...props} src={props.public_id} />
+      <CldImage {...props} src={props?.public_id} />
       <Heart
         fill={isFavorite ? "red" : "black"}
         onClick={() => {
           setTimeout(() => {
             Router.refresh();
           }, 4000);
-          props.onUnheart?.(props.img);
+          props?.onUnheart?.(props?.img);
           setIsFavorite((prev: boolean) => !prev);
           startTransition(async () => {
-            await addFavorite(props.public_id, isFavorite ? true : false);
+            await addFavorite(props?.public_id, isFavorite ? true : false);
           });
         }}
         size={20}
         className="absolute hover:text-red-500 cursor-pointer top-3 left-3"
       />
       <DropDownMenu
-        image={props.img}
+        image={props?.img}
         className="absolute hover:text-blue-500 cursor-pointer top-2 right-2"
       />
     </div>

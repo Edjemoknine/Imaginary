@@ -27,7 +27,7 @@ const DropDownMenu = ({ className, image }: { className: string }) => {
           <DropdownMenuItem asChild>
             <Link
               className="flex items-center cursor-pointer gap-2 p-1"
-              href={`/edit?publicId=${encodeURIComponent(image.public_id)}`}
+              href={`/edit?publicId=${encodeURIComponent(image?.public_id)}`}
             >
               <Pencil size={17} className="  h-4 w-4 -ml-1" /> Edit
             </Link>

@@ -17,7 +17,7 @@ import { useState } from "react";
 import { serachResults } from "@/app/gallery/page";
 import { AddImageToAlbum } from "@/components/shared/actions";
 
-const AddToAlbum = (image: serachResults) => {
+const AddToAlbum = (image: any) => {
   const [albumName, setAlbumName] = useState("");
   const [open, setOpen] = useState(false);
 

@@ -21,7 +21,6 @@ const AddToAlbum = (image: serachResults) => {
   const [albumName, setAlbumName] = useState("");
   const [open, setOpen] = useState(false);
 
-  console.log(image);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -54,7 +53,7 @@ const AddToAlbum = (image: serachResults) => {
           <Button
             onClick={async () => {
               setOpen(false);
-              await AddImageToAlbum(albumName, { ...image.image });
+              await AddImageToAlbum(albumName, { ...image?.image });
             }}
             type="submit"
           >

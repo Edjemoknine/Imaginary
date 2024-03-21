@@ -11,7 +11,7 @@ import AddToAlbum from "./AddToAlbum";
 import { serachResults } from "@/app/gallery/page";
 import Link from "next/link";
 
-const DropDownMenu = ({ className, image }: { className: string }) => {
+const DropDownMenu = ({ className, image }: {image:any ,className: string }) => {
   return (
     <div className={className}>
       <DropdownMenu>

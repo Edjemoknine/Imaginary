@@ -21,7 +21,6 @@ const libraryLinks = [
   { href: "/gallery", label: "Gallery", icon: Image },
   { href: "/album", label: "Albums", icon: Album },
   { href: "/favorite", label: "Favorites", icon: Heart },
-  { href: "/edit", label: "Image editor", icon: Wand2 },
 ];
 
 const toolIcons = {
@@ -58,7 +57,9 @@ function NavLink({
         size={17}
         className={cn(
           "shrink-0 transition",
-          active ? "text-violet-300" : "text-zinc-500 group-hover:text-zinc-300",
+          active
+            ? "text-violet-300"
+            : "text-zinc-500 group-hover:text-zinc-300",
         )}
       />
       <span className="truncate">{label}</span>
@@ -74,14 +75,17 @@ export default function DashboardSidebar() {
 
   return (
     <aside className="border-b border-white/[0.08] bg-[#0d0c11] md:min-h-[calc(100vh-72px)] md:w-[248px] md:shrink-0 md:border-b-0 md:border-r">
-      <nav aria-label="Dashboard" className="scrollbar-none overflow-x-auto px-3 py-3 md:sticky md:top-[72px] md:flex md:max-h-[calc(100vh-72px)] md:flex-col md:overflow-y-auto md:px-4 md:py-5">
+      <nav
+        aria-label="Dashboard"
+        className="scrollbar-none overflow-x-auto px-3 py-3 md:sticky md:top-[72px] md:flex md:max-h-[calc(100vh-72px)] md:flex-col md:overflow-y-auto md:px-4 md:py-5"
+      >
         <div className="flex min-w-max gap-2 md:min-w-0 md:flex-col md:gap-0">
-          <div className="flex items-center gap-2 px-2 pb-2 md:pb-4">
+          {/* <div className="flex items-center gap-2 px-2 pb-2 md:pb-4">
             <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white">
               <Sparkles size={15} />
             </span>
             <span className="text-xs font-semibold tracking-wide text-zinc-300">WORKSPACE</span>
-          </div>
+          </div> */}
 
           <div className="flex gap-1.5 md:flex-col md:gap-1">
             <NavLink
@@ -107,7 +111,7 @@ export default function DashboardSidebar() {
             ))}
           </div>
 
-          <div className="flex items-center gap-1.5 md:mt-6 md:flex-col md:items-stretch md:gap-1">
+          {/*   <div className="flex items-center gap-1.5 md:mt-6 md:flex-col md:items-stretch md:gap-1">
             <p className="hidden px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-600 md:block">
               AI tools
             </p>
@@ -116,20 +120,29 @@ export default function DashboardSidebar() {
                 key={feature.slug}
                 href={`/features/${feature.slug}`}
                 label={feature.shortTitle}
-                icon={toolIcons[feature.slug as keyof typeof toolIcons] ?? Sparkles}
+                icon={
+                  toolIcons[feature.slug as keyof typeof toolIcons] ?? Sparkles
+                }
                 active={pathname === `/features/${feature.slug}`}
               />
             ))}
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-auto hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-violet-500/[0.10] to-fuchsia-500/[0.04] p-4 md:block">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-400/10 text-violet-200">
             <Sparkles size={16} />
           </span>
-          <p className="mt-3 text-xs font-semibold text-zinc-200">Make something amazing</p>
-          <p className="mt-1.5 text-[11px] leading-5 text-zinc-500">Jump into the studio and bring your next idea to life.</p>
-          <Link href="/studio" className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-violet-300 transition hover:text-violet-200">
+          <p className="mt-3 text-xs font-semibold text-zinc-200">
+            Make something amazing
+          </p>
+          <p className="mt-1.5 text-[11px] leading-5 text-zinc-500">
+            Jump into the studio and bring your next idea to life.
+          </p>
+          <Link
+            href="/studio"
+            className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-violet-300 transition hover:text-violet-200"
+          >
             Open studio <ArrowUpRight size={13} />
           </Link>
         </div>

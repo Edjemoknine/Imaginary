@@ -1,6 +1,5 @@
 import CloudIMG from "@/components/shared/CloudIMG";
 import SearchForm from "@/components/shared/SearchForm";
-import UploadButton from "@/components/shared/UploadButton";
 import cloudinary from "cloudinary";
 import { unstable_noStore } from "next/cache";
 unstable_noStore();
@@ -24,11 +23,10 @@ const Gallery = async ({ searchParams: { search } }: Props) => {
   // console.log(results);
   return (
     <section className="pt-7 px-4">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <h1 className="text-4xl font-bold">Gallery</h1>
-        <UploadButton />
+        <SearchForm initialState={search} />
       </div>
-      <SearchForm initialState={search} />
 
       <div className="md:columns-4 columns-2 space-y-2 pt-10 gap-2 ">
         {results?.resources.map((img) => (

@@ -14,7 +14,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { useState } from "react";
-import { serachResults } from "@/app/gallery/page";
+import { serachResults } from "@/app/(dashboard)/gallery/page";
 import { AddImageToAlbum } from "@/components/shared/actions";
 
 const AddToAlbum = (image: any) => {

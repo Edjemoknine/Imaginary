@@ -1,4 +1,4 @@
-import { Folder } from "@/app/album/page";
+import { Folder } from "@/app/(dashboard)/album/page";
 import React from "react";
 import cloudinary from "cloudinary";
 import { Button } from "../ui/button";

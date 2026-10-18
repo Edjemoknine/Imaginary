@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Folder } from "@/app/album/page";
+import { Folder } from "@/app/(dashboard)/album/page";
 import Link from "next/link";
 
 export function AlbumCard({ folder }: { folder: Folder }) {

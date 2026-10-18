@@ -1,6 +1,6 @@
 "use server";
 
-import { serachResults } from "@/app/gallery/page";
+import { serachResults } from "@/app/(dashboard)/gallery/page";
 import cloudinary from "cloudinary";
 
 export const AddImageToAlbum = async (albumName: string, image:any) => {

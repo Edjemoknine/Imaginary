@@ -8,7 +8,7 @@ import { Menu } from "lucide-react";
 import { Button } from "../ui/button";
 import { Pencil } from "lucide-react";
 import AddToAlbum from "./AddToAlbum";
-import { serachResults } from "@/app/gallery/page";
+import { serachResults } from "@/app/(dashboard)/gallery/page";
 import Link from "next/link";
 
 const DropDownMenu = ({ className, image }: {image:any ,className: string }) => {

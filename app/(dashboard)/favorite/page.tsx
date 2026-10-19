@@ -11,9 +11,17 @@ const Favorite = async () => {
     .execute()) as { resources: serachResults[] };
 
   return (
-    <section className="pt-7 px-4">
-      <div className="flex justify-between">
-        <h1 className="text-4xl font-bold">Favorite Images</h1>
+    <section className="mx-auto min-h-[calc(100vh-72px)] max-w-7xl px-5 py-8 text-zinc-100 sm:px-8 sm:py-10">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-300">
+          Your library
+        </p>
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Favorite images
+        </h1>
+        <p className="mt-2 text-sm text-zinc-400">
+          Images you have saved for quick access.
+        </p>
       </div>
 
       <FavoriteList resources={results.resources} />

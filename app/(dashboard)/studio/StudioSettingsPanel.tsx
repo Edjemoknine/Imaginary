@@ -63,7 +63,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
 
   return (
     <aside className="border-t border-white/[0.08] bg-[#0d0c11] p-5 lg:min-h-0 lg:overflow-y-auto lg:border-l lg:border-t-0 lg:p-5">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
         <h2 className="text-sm font-semibold text-white">
           {activeTool === "auto-tagging" ? "Image auto-tagging" : "Adjustments"}
         </h2>
@@ -72,7 +72,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
           onClick={reset}
           aria-label="Reset adjustments"
           disabled={status === "saving"}
-          className="text-xs text-zinc-500 transition hover:text-white"
+          className="rounded-lg px-2 py-1 text-xs text-zinc-500 transition hover:bg-white/[0.05] hover:text-white"
         >
           Reset
         </button>
@@ -85,7 +85,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
         <div className="mt-6 space-y-4">
           <div>
             <p className="text-xs font-medium text-zinc-300">Current image</p>
-            <p className="mt-2 truncate rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2.5 text-xs text-zinc-400">
+            <p className="mt-2 truncate rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-xs text-zinc-400">
               {uploadedPublicId || "Upload an image to enable auto-tagging"}
             </p>
             <p className="mt-2 text-[10px] leading-4 text-zinc-500">
@@ -122,7 +122,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
             type="button"
             onClick={() => void runAutoTagging()}
             disabled={status !== "idle" || !uploadedPublicId}
-            className="h-11 w-full rounded-xl bg-violet-500 text-sm font-semibold text-white hover:bg-violet-400 disabled:opacity-40"
+            className="h-11 w-full rounded-xl bg-violet-500 text-sm font-semibold text-white shadow-lg shadow-violet-950/30 hover:bg-violet-400 disabled:opacity-40"
           >
             {status === "tagging" ? (
               <>
@@ -158,7 +158,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
           {autoTagComplete &&
             detectedTags.length === 0 &&
             status === "idle" && (
-              <p className="rounded-lg border border-white/[0.08] px-3 py-2 text-[11px] leading-5 text-zinc-500">
+              <p className="rounded-xl border border-white/[0.08] bg-white/[0.02] px-3 py-2 text-[11px] leading-5 text-zinc-500">
                 No Google tags met the selected confidence threshold.
               </p>
             )}
@@ -215,14 +215,14 @@ export function StudioSettingsPanel({ state, actions }: Props) {
       )}
 
       {activeTool === "face-privacy" && (
-        <p className="mt-7 rounded-xl border border-white/10 bg-white/[0.025] p-3 text-xs leading-5 text-zinc-400">
+        <p className="mt-7 rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 text-xs leading-5 text-zinc-400">
           Cloudinary detects and blurs faces to help protect people&apos;s
           privacy.
         </p>
       )}
 
       {activeTool === "enhance" && (
-        <p className="mt-7 rounded-xl border border-white/10 bg-white/[0.025] p-3 text-xs leading-5 text-zinc-400">
+        <p className="mt-7 rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 text-xs leading-5 text-zinc-400">
           Automatically improve the image&apos;s colors, contrast, and
           brightness.
         </p>
@@ -230,7 +230,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
 
       {(activeTool === "auto-enhance" ||
         activeTool === "improve-indoor") && (
-        <p className="mt-7 rounded-xl border border-white/10 bg-white/[0.025] p-3 text-xs leading-5 text-zinc-400">
+        <p className="mt-7 rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 text-xs leading-5 text-zinc-400">
           {activeTool === "auto-enhance"
             ? "Automatically balance the image for a natural enhancement."
             : "Improve color, contrast, and brightness for indoor photography."}
@@ -251,7 +251,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
             value={baselineBackgroundId}
             onChange={(event) => setBaselineBackgroundId(event.target.value)}
             placeholder="e.g. docs/sky"
-            className="h-10 border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600"
+            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
           />
           <p className="mt-2 text-[11px] leading-5 text-zinc-500">
             Removes the background and converts the subject to grayscale. Add
@@ -312,7 +312,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               setPrompt(event.target.value);
             }}
             placeholder="e.g. the person in the background"
-            className="h-10 border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600"
+            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
           />
           <p className="mt-2 text-[11px] leading-5 text-zinc-500">
             Describe the object to remove. Brush selection is coming soon.
@@ -336,7 +336,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               setReplaceFrom(event.target.value);
             }}
             placeholder="e.g. a red car"
-            className="h-10 border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600"
+            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
           />
           <label
             htmlFor="replace-prompt"
@@ -380,7 +380,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
                 ? "e.g. the woman on the left"
                 : "e.g. an empty beach"
             }
-            className="h-10 border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600"
+            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
           />
         </div>
       )}
@@ -399,7 +399,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               value={recolorTarget}
               onChange={(event) => setRecolorTarget(event.target.value)}
               placeholder="e.g. sweater"
-              className="h-10 border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600"
+              className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
             />
           </div>
           <div>
@@ -414,7 +414,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               value={recolorColor}
               onChange={(event) => setRecolorColor(event.target.value)}
               placeholder="e.g. green or 5632a8"
-              className="h-10 border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600"
+              className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
             />
           </div>
         </div>
@@ -446,7 +446,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
                       Number(event.target.value),
                     )
                   }
-                  className="mt-1 h-9 border-white/10 bg-white/[0.03] px-2 text-xs text-white"
+                  className="mt-1 h-9 rounded-lg border-white/10 bg-white/[0.03] px-2 text-xs text-white focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
                 />
               </label>
             ))}
@@ -577,13 +577,13 @@ export function StudioSettingsPanel({ state, actions }: Props) {
       )}
 
       {activeTool === "smart-crop" && (
-        <p className="mt-7 rounded-xl border border-white/10 bg-white/[0.025] p-3 text-xs leading-5 text-zinc-400">
+        <p className="mt-7 rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 text-xs leading-5 text-zinc-400">
           Automatically crop your image to a 1:2 phone portrait.
         </p>
       )}
 
       {activeTool === "basic-auto-fill-pad" && (
-        <p className="mt-7 rounded-xl border border-white/10 bg-white/[0.025] p-3 text-xs leading-5 text-zinc-400">
+        <p className="mt-7 rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 text-xs leading-5 text-zinc-400">
           Automatically generate background pixels to pad the image to the
           editor canvas.
         </p>
@@ -605,7 +605,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
             (activeTool === "generative-replace" &&
               (!replaceFrom.trim() || !prompt.trim()))
           }
-          className="h-11 w-full rounded-xl bg-violet-500 text-sm font-semibold text-white hover:bg-violet-400 disabled:opacity-40"
+          className="h-11 w-full rounded-xl bg-violet-500 text-sm font-semibold text-white shadow-lg shadow-violet-950/30 hover:bg-violet-400 disabled:opacity-40"
         >
           {status === "applying" ? (
             <>

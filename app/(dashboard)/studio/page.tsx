@@ -4,6 +4,7 @@ import {
   ArrowDownToLine,
   Image as ImageIcon,
   Loader2,
+  Sparkles,
   Upload,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -55,7 +56,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
   return (
     <main className="min-h-[calc(100vh-72px)] bg-[#09090c] lg:h-[calc(100vh-72px)] lg:overflow-hidden">
       <div className="flex min-h-[calc(100vh-72px)] flex-col lg:h-full lg:min-h-0">
-        <div className="flex min-h-[68px] items-center justify-between gap-3 border-b border-white/[0.08] px-4 py-3 sm:px-6">
+        <div className="flex min-h-[68px] items-center justify-between gap-3 border-b border-white/[0.08] bg-[#09090c] px-4 py-3 sm:px-6">
           <div className="min-w-0">
             <p className="text-sm font-semibold text-white">Untitled project</p>
             <p className="mt-0.5 truncate text-xs text-zinc-500">
@@ -72,7 +73,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
               onClick={reset}
               disabled={appliedEdits.length === 0 || status === "saving"}
               variant="outline"
-              className="h-9 border-white/10 bg-transparent text-xs text-zinc-300 hover:bg-white/[0.06] hover:text-white"
+              className="h-9 rounded-xl border-white/10 bg-white/[0.03] text-xs text-zinc-300 hover:bg-white/[0.08] hover:text-white"
             >
               Reset all
             </Button>
@@ -87,7 +88,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                     status === "saving"
                   }
                   variant="outline"
-                  className="h-9 border-white/10 bg-transparent px-3 text-xs text-zinc-300 hover:bg-white/[0.06] hover:text-white disabled:opacity-40"
+                  className="h-9 rounded-xl border-white/10 bg-white/[0.03] px-3 text-xs text-zinc-300 hover:bg-white/[0.08] hover:text-white disabled:opacity-40"
                 >
                   {status === "downloading" ? (
                     <Loader2 size={14} className="mr-1.5 animate-spin" />
@@ -104,7 +105,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                     status === "downloading" ||
                     status === "saving"
                   }
-                  className="h-9 bg-violet-500 px-3 text-xs font-semibold text-white hover:bg-violet-400 disabled:opacity-40"
+                  className="h-9 rounded-xl bg-violet-500 px-3 text-xs font-semibold text-white shadow-lg shadow-violet-950/30 hover:bg-violet-400 disabled:opacity-40"
                 >
                   {status === "saving" ? (
                     <Loader2 size={14} className="mr-1.5 animate-spin" />
@@ -134,15 +135,17 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                           key={slug}
                           type="button"
                           onClick={() => setActiveTool(slug)}
-                          className={`group flex items-center gap-3 rounded-xl border p-2.5 text-left transition lg:p-3 ${activeTool === slug ? "border-violet-400/30 bg-violet-400/[0.09]" : "border-transparent hover:border-white/[0.08] hover:bg-white/[0.035]"}`}
+                          className={`group flex items-center gap-3 rounded-xl p-2.5 text-left transition lg:p-3 ${activeTool === slug ? "bg-violet-400/[0.12] text-violet-100 ring-1 ring-inset ring-violet-300/15" : "text-zinc-400 hover:bg-white/[0.05] hover:text-zinc-100"}`}
                         >
                           <span
-                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${activeTool === slug ? "bg-violet-400/15 text-violet-200" : "bg-white/[0.05] text-zinc-400 group-hover:text-zinc-200"}`}
+                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${activeTool === slug ? "bg-violet-400/10 text-violet-300" : "bg-white/[0.05] text-zinc-500 group-hover:text-zinc-300"}`}
                           >
                             <Icon size={17} />
                           </span>
                           <span className="min-w-0">
-                            <span className="block truncate text-xs font-medium text-zinc-100">
+                            <span
+                              className={`block truncate text-xs font-medium ${activeTool === slug ? "text-violet-100" : "text-zinc-100"}`}
+                            >
                               {label}
                             </span>
                             <span className="mt-1 hidden truncate text-[10px] text-zinc-500 lg:block">
@@ -155,7 +158,10 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                 </section>
               ))}
             </div>
-            <div className="mt-5 hidden rounded-xl border border-white/[0.07] bg-white/[0.025] p-3 lg:block">
+            <div className="mt-5 hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-violet-500/[0.10] to-fuchsia-500/[0.04] p-4 lg:block">
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-violet-400/10 text-violet-200">
+                <Sparkles size={16} />
+              </span>
               <p className="text-xs font-medium text-zinc-300">
                 Powered by Cloudinary
               </p>
@@ -165,7 +171,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
             </div>
           </aside>
 
-          <section className="flex min-h-[55vh] flex-col bg-[#111015] p-3 sm:p-5 lg:min-h-0 lg:overflow-hidden lg:p-6">
+          <section className="flex min-h-[55vh] flex-col bg-[#0d0c12] p-3 sm:p-5 lg:min-h-0 lg:overflow-hidden lg:p-6">
             <div className="mb-3 flex items-center justify-between gap-3">
               <div className="min-w-0">
                 <p className="truncate text-sm font-medium text-zinc-100">
@@ -178,7 +184,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
               <Button
                 onClick={() => inputRef.current?.click()}
                 variant="outline"
-                className="h-9 shrink-0 border-white/10 bg-white/[0.03] text-xs text-zinc-300 hover:bg-white/[0.08] hover:text-white"
+                className="h-9 shrink-0 rounded-xl border-white/10 bg-white/[0.03] text-xs text-zinc-300 hover:bg-white/[0.08] hover:text-white"
               >
                 <Upload size={14} className="mr-2" /> Upload image
               </Button>
@@ -261,7 +267,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                           type="button"
                           onClick={() => inputRef.current?.click()}
                           variant="outline"
-                          className="mt-5 h-9 border-white/10 bg-white/[0.04] text-xs text-zinc-200 hover:bg-white/[0.08]"
+                          className="mt-5 h-9 rounded-xl border-white/10 bg-white/[0.04] text-xs text-zinc-200 hover:bg-white/[0.08]"
                         >
                           <Upload size={14} className="mr-2" /> Choose image
                         </Button>

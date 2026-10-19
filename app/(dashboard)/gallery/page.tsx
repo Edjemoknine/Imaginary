@@ -20,27 +20,48 @@ const Gallery = async ({ searchParams: { search } }: Props) => {
     .with_field("tags")
     .max_results(60)
     .execute()) as { resources: serachResults[] };
-  // console.log(results);
   return (
-    <section className="pt-7 px-4">
-      <div className="flex justify-between items-center">
-        <h1 className="text-4xl font-bold">Gallery</h1>
-        <SearchForm initialState={search} />
+    <section className="mx-auto min-h-[calc(100vh-72px)] max-w-7xl px-5 py-8 text-zinc-100 sm:px-8 sm:py-10">
+      <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-300">
+            Your library
+          </p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            Gallery
+          </h1>
+          <p className="mt-2 text-sm text-zinc-400">
+            Browse and manage your Cloudinary images.
+          </p>
+        </div>
+        <SearchForm initialState={search ?? ""} />
       </div>
 
-      <div className="md:columns-4 columns-2 space-y-2 pt-10 gap-2 ">
-        {results?.resources.map((img) => (
-          <CloudIMG
-            width="400"
-            alt="image"
-            height="300"
-            key={img.public_id}
-            src={img.public_id}
-            public_id={img.public_id}
-            img={img}
-          />
-        ))}
-      </div>
+      {results?.resources.length ? (
+        <div className="mt-8 columns-2 gap-3 sm:columns-3 lg:columns-4 xl:columns-5">
+          {results.resources.map((img) => (
+            <CloudIMG
+              width="400"
+              alt={img.public_id}
+              height="300"
+              key={img.public_id}
+              public_id={img.public_id}
+              img={img}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-8 flex min-h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-white/[0.02] px-6 text-center">
+          <h2 className="text-sm font-medium text-zinc-200">
+            {search ? "No images match this tag" : "Your gallery is empty"}
+          </h2>
+          <p className="mt-1.5 max-w-sm text-xs leading-5 text-zinc-500">
+            {search
+              ? "Try another tag or clear your search to see more images."
+              : "Upload images to your Cloudinary account and they will appear here."}
+          </p>
+        </div>
+      )}
     </section>
   );
 };

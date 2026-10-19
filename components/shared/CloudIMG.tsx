@@ -12,18 +12,23 @@ type CloudImageProps = Omit<CldImageProps, "src"> & {
   public_id: string;
   img: serachResults;
   onUnheart?: (unheartedResource: serachResults) => void;
+  onDelete?: (deletedResource: serachResults) => void;
 };
 
 const CloudIMG = ({
   public_id,
   img,
   onUnheart,
+  onDelete,
   ...imageProps
 }: CloudImageProps) => {
   const [isPending, startTransition] = useTransition();
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const [isFavorite, setIsFavorite] = useState(img.tags.includes("favorite"));
   const router = useRouter();
+  if (isDeleted) return null;
+
   return (
     <div className="group relative mb-3 break-inside-avoid overflow-hidden rounded-2xl border border-white/[0.08] bg-[#141319] shadow-lg shadow-black/10">
       <CldImage
@@ -60,7 +65,15 @@ const CloudIMG = ({
             className={isFavorite ? "text-rose-400" : "text-white"}
           />
         </button>
-        <DropDownMenu image={img} className="text-white" />
+        <DropDownMenu
+          image={img}
+          className="text-white"
+          onDeleted={() => {
+            setIsDeleted(true);
+            onDelete?.(img);
+            router.refresh();
+          }}
+        />
       </div>
     </div>
   );

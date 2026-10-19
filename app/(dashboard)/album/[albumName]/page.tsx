@@ -31,7 +31,6 @@ const Album = async ({ params: { albumName } }: Props) => {
           </h1>
           <p className="mt-2 text-sm text-zinc-400">Images in this album.</p>
         </div>
-        <UploadButton />
       </div>
 
       {results?.resources.length ? (

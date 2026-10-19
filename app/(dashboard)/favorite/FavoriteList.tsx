@@ -39,6 +39,13 @@ const FavoriteList = ({ resources }: { resources: serachResults[] }) => {
               ),
             );
           }}
+          onDelete={(deletedResource) => {
+            setResourcesState((currentResources) =>
+              currentResources.filter(
+                (resource) => resource.public_id !== deletedResource.public_id,
+              ),
+            );
+          }}
         />
       ))}
     </div>

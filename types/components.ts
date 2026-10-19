@@ -23,3 +23,10 @@ export type CloudImageCardProps = Omit<CldImageProps, "src"> & {
   onUnheart?: (unheartedResource: SearchResult) => void;
   onDelete?: (deletedResource: SearchResult) => void;
 };
+
+export type ImagePreviewPanelProps = {
+  image: SearchResult;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onDeleted: () => void;
+};

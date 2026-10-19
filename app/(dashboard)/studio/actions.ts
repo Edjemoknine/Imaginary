@@ -2,7 +2,7 @@
 
 import cloudinary from "cloudinary";
 
-export type AutoTagUploadResult =
+export type AutoTagResult =
   | { success: true; tags: string[] }
   | { success: false; error: string };
 
@@ -10,23 +10,56 @@ export type SaveTransformedImageResult =
   | { success: true; publicId: string }
   | { success: false; error: string };
 
+const savePublicIdPattern = /^[A-Za-z0-9/_.-]+$/;
+const tagPublicIdPattern = /^[A-Za-z0-9/_-]+$/;
+
+function validatePublicId(
+  publicId: unknown,
+  pattern: RegExp,
+  errorMessage: string,
+): string {
+  if (typeof publicId !== "string") {
+    throw new Error(errorMessage);
+  }
+
+  const trimmedPublicId = publicId.trim();
+  const segments = trimmedPublicId.split("/");
+
+  if (
+    !trimmedPublicId ||
+    trimmedPublicId.length > 200 ||
+    !pattern.test(trimmedPublicId) ||
+    segments.some((segment) => segment === "." || segment === "..")
+  ) {
+    throw new Error(errorMessage);
+  }
+
+  return trimmedPublicId;
+}
+
+function ensureCloudinaryConfigured(): void {
+  const { cloud_name, api_key, api_secret } = cloudinary.v2.config();
+  if (!cloud_name || !api_key || !api_secret) {
+    throw new Error("Cloudinary server credentials are not configured.");
+  }
+}
+
+function getErrorMessage(error: unknown, fallback: string): string {
+  return error instanceof Error ? error.message : fallback;
+}
+
 export async function saveTransformedImage(
   publicId: string,
   transformations: string[],
 ): Promise<SaveTransformedImageResult> {
   try {
-    const trimmedPublicId = publicId.trim();
-
+    const trimmedPublicId = validatePublicId(
+      publicId,
+      savePublicIdPattern,
+      "Public ID contains unsupported characters.",
+    );
     if (
-      !trimmedPublicId ||
-      trimmedPublicId.length > 200 ||
-      !/^[A-Za-z0-9/_.-]+$/.test(trimmedPublicId) ||
-      trimmedPublicId.split("/").some((segment) => segment === "." || segment === "..")
-    ) {
-      throw new Error("Public ID contains unsupported characters.");
-    }
-
-    if (
+      !Array.isArray(transformations) ||
       transformations.length === 0 ||
       transformations.length > 50 ||
       transformations.some(
@@ -34,17 +67,13 @@ export async function saveTransformedImage(
           typeof transformation !== "string" ||
           transformation.length === 0 ||
           transformation.length > 2000 ||
-          !/^[A-Za-z0-9_:.,;= -]+$/.test(transformation),
+          !/^[A-Za-z0-9_/:.,;= -]+$/.test(transformation),
       )
     ) {
       throw new Error("The image has no valid transformations to save.");
     }
 
-    const credentials = cloudinary.v2.config();
-    if (!credentials.cloud_name || !credentials.api_key || !credentials.api_secret) {
-      throw new Error("Cloudinary server credentials are not configured.");
-    }
-
+    ensureCloudinaryConfigured();
     const transformedUrl = cloudinary.v2.url(trimmedPublicId, {
       secure: true,
       transformation: transformations.map((raw_transformation) => ({
@@ -67,7 +96,10 @@ export async function saveTransformedImage(
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : "Could not save the transformed image.",
+      error: getErrorMessage(
+        error,
+        "Could not save the transformed image.",
+      ),
     };
   }
 }
@@ -75,28 +107,18 @@ export async function saveTransformedImage(
 export async function autoTagExistingImage(
   publicId: string,
   confidence: number,
-): Promise<AutoTagUploadResult> {
+): Promise<AutoTagResult> {
   try {
-    const trimmedPublicId = publicId.trim();
-
-    if (
-      !trimmedPublicId ||
-      trimmedPublicId.length > 200 ||
-      !/^[A-Za-z0-9/_-]+$/.test(trimmedPublicId) ||
-      trimmedPublicId.split("/").some((segment) => segment === "." || segment === "..")
-    ) {
-      throw new Error("Public ID must contain only letters, numbers, slashes, underscores, or hyphens.");
-    }
-
+    const trimmedPublicId = validatePublicId(
+      publicId,
+      tagPublicIdPattern,
+      "Public ID must contain only letters, numbers, slashes, underscores, or hyphens.",
+    );
     if (!Number.isFinite(confidence) || confidence < 0 || confidence > 1) {
       throw new Error("Tag confidence must be between 0 and 1.");
     }
 
-    const credentials = cloudinary.v2.config();
-    if (!credentials.cloud_name || !credentials.api_key || !credentials.api_secret) {
-      throw new Error("Cloudinary server credentials are not configured.");
-    }
-
+    ensureCloudinaryConfigured();
     const result = await cloudinary.v2.uploader.explicit(trimmedPublicId, {
       type: "upload",
       resource_type: "image",
@@ -111,7 +133,7 @@ export async function autoTagExistingImage(
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : "Image auto-tagging failed.",
+      error: getErrorMessage(error, "Image auto-tagging failed."),
     };
   }
 }

@@ -19,7 +19,16 @@ const CloudIMG = (
   const Router = useRouter();
   return (
     <div className="relative">
-      <CldImage {...props} src={props?.public_id} />
+      <CldImage
+        {...props}
+        src={props?.public_id}
+        crop="fill"
+        gravity="auto"
+        format="auto"
+        quality="auto"
+        loading="lazy"
+        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 400px"
+      />
       <Heart
         fill={isFavorite ? "red" : "black"}
         onClick={() => {

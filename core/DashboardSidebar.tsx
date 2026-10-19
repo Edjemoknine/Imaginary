@@ -30,7 +30,7 @@ function NavLink({
       className={cn(
         "group flex h-11 shrink-0 items-center justify-center gap-3 rounded-xl px-2 text-[13px] font-medium transition md:justify-start md:px-3",
         active
-          ? "bg-violet-400/[0.12] text-violet-100 ring-1 ring-inset ring-violet-300/15"
+          ? "bg-brand/[0.12] text-brand-100 ring-1 ring-inset ring-brand-300/20"
           : "text-zinc-400 hover:bg-white/[0.05] hover:text-zinc-100",
       )}
     >
@@ -39,7 +39,7 @@ function NavLink({
         className={cn(
           "shrink-0 transition",
           active
-            ? "text-violet-300"
+            ? "text-brand-300"
             : "text-zinc-500 group-hover:text-zinc-300",
         )}
       />
@@ -103,8 +103,8 @@ export default function DashboardSidebar() {
           </div> */}
         </div>
 
-        <div className="mt-6 hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-violet-500/[0.10] to-fuchsia-500/[0.04] p-4 md:mt-auto md:block">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-400/10 text-violet-200">
+        <div className="mt-6 hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-brand/[0.10] to-[#f7778e]/[0.04] p-4 md:mt-auto md:block">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand/10 text-brand-200">
             <Sparkles size={16} />
           </span>
           <p className="mt-3 text-xs font-semibold text-zinc-200">
@@ -115,7 +115,7 @@ export default function DashboardSidebar() {
           </p>
           <Link
             href="/studio"
-            className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-violet-300 transition hover:text-violet-200"
+            className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-brand-300 transition hover:text-brand-200"
           >
             Open studio <ArrowUpRight size={13} />
           </Link>

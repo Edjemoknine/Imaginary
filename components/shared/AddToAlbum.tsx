@@ -121,8 +121,8 @@ const AddToAlbum = ({ image, open, onOpenChange }: ImageDialogProps) => {
     >
       <DialogContent className="gap-0 overflow-hidden rounded-2xl border-white/[0.08] bg-[#141319] p-0 text-zinc-100 shadow-2xl shadow-black/50 sm:max-w-[440px]">
         <DialogHeader>
-          <div className="border-b border-white/[0.08] bg-gradient-to-br from-violet-500/[0.10] to-fuchsia-500/[0.04] p-5 pr-12">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-violet-400/15 bg-violet-400/[0.08] text-violet-200">
+          <div className="border-b border-white/[0.08] bg-gradient-to-br from-brand/[0.10] to-[#f7778e]/[0.04] p-5 pr-12">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-brand/15 bg-brand/[0.08] text-brand-200">
               <FolderPlus size={18} />
             </span>
             <DialogTitle className="mt-4 text-base font-semibold text-white">
@@ -150,17 +150,17 @@ const AddToAlbum = ({ image, open, onOpenChange }: ImageDialogProps) => {
             >
               <SelectTrigger
                 id="album-destination"
-                className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-zinc-100 focus:ring-violet-400/30 focus:ring-offset-0"
+                className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-zinc-100 focus:ring-brand/30 focus:ring-offset-0"
               >
                 <SelectValue placeholder="Select an album" />
               </SelectTrigger>
               <SelectContent className="rounded-xl border-white/10 bg-[#141319] text-zinc-100">
                 <SelectItem
                   value={CREATE_ALBUM_VALUE}
-                  className="text-xs focus:bg-violet-400/10 focus:text-violet-100"
+                  className="text-xs focus:bg-brand/10 focus:text-brand-100"
                 >
                   <span className="flex items-center gap-2">
-                    <Plus size={14} className="text-violet-300" />
+                    <Plus size={14} className="text-brand-300" />
                     Create a new album
                   </span>
                 </SelectItem>
@@ -173,7 +173,7 @@ const AddToAlbum = ({ image, open, onOpenChange }: ImageDialogProps) => {
                       key={album.path}
                       value={`album:${album.path}`}
                       disabled={isCurrentAlbum}
-                      className="text-xs focus:bg-violet-400/10 focus:text-violet-100"
+                      className="text-xs focus:bg-brand/10 focus:text-brand-100"
                     >
                       {album.name}
                       {isCurrentAlbum ? " (current album)" : ""}
@@ -192,7 +192,7 @@ const AddToAlbum = ({ image, open, onOpenChange }: ImageDialogProps) => {
                 }}
                 value={albumName}
                 placeholder="e.g. Travel, portraits..."
-                className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-zinc-100 placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
+                className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-zinc-100 placeholder:text-zinc-600 focus-visible:border-brand/40 focus-visible:ring-brand/30 focus-visible:ring-offset-0"
               />
             )}
             {isLoadingAlbums && (
@@ -243,7 +243,7 @@ const AddToAlbum = ({ image, open, onOpenChange }: ImageDialogProps) => {
                 isLoadingAlbums ||
                 (selectedAlbum === CREATE_ALBUM_VALUE && !albumName.trim())
               }
-              className="h-10 rounded-xl bg-violet-500 px-4 text-xs font-semibold text-white shadow-lg shadow-violet-950/30 hover:bg-violet-400"
+              className="h-10 rounded-xl bg-brand px-4 text-xs font-semibold text-[#24100d] shadow-lg shadow-[#fa7052]/15 hover:bg-brand-200"
             >
               {isAdding && <Loader2 size={14} className="mr-2 animate-spin" />}
               {isAdding

@@ -16,7 +16,7 @@ const Gallery = async ({ searchParams: { search = "" } }: GalleryPageProps) => {
     <section className="mx-auto min-h-[calc(100vh-72px)] max-w-7xl px-5 py-8 text-zinc-100 sm:px-8 sm:py-10">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-300">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
             Your library
           </p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">

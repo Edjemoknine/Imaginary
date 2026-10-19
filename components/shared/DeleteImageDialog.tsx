@@ -58,7 +58,7 @@ export default function DeleteImageDialog({
     >
       <DialogContent className="gap-0 overflow-hidden rounded-2xl border-white/[0.08] bg-[#141319] p-0 text-zinc-100 shadow-2xl shadow-black/50 sm:max-w-[440px]">
         <DialogHeader>
-          <div className="border-b border-white/[0.08] bg-gradient-to-br from-rose-500/[0.10] to-violet-500/[0.04] p-5 pr-12">
+          <div className="border-b border-white/[0.08] bg-gradient-to-br from-rose-500/[0.10] to-[#ff9a74]/[0.04] p-5 pr-12">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-rose-400/20 bg-rose-400/[0.08] text-rose-200">
               <AlertTriangle size={18} />
             </span>

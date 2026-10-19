@@ -25,11 +25,11 @@ const SearchForm = ({ initialState }: SearchFormProps) => {
           onChange={(event) => setSearch(event.target.value)}
           value={search}
           placeholder="e.g. travel, portrait..."
-          className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-zinc-100 placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
+          className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-zinc-100 placeholder:text-zinc-600 focus-visible:border-brand/40 focus-visible:ring-brand/30 focus-visible:ring-offset-0"
         />
         <Button
           type="submit"
-          className="h-10 shrink-0 rounded-xl bg-violet-500 px-4 text-xs font-semibold text-white shadow-lg shadow-violet-950/30 hover:bg-violet-400"
+          className="h-10 shrink-0 rounded-xl bg-brand px-4 text-xs font-semibold text-[#24100d] shadow-lg shadow-[#fa7052]/15 hover:bg-brand-200"
         >
           Search
         </Button>

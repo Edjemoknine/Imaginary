@@ -100,7 +100,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               >
                 Minimum tag confidence
               </label>
-              <span className="text-xs tabular-nums text-violet-200">
+              <span className="text-xs tabular-nums text-brand-200">
                 {tagConfidence.toFixed(2)}
               </span>
             </div>
@@ -112,7 +112,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               step="0.05"
               value={tagConfidence}
               onChange={(event) => setTagConfidence(Number(event.target.value))}
-              className="w-full accent-violet-400"
+              className="w-full accent-[#ff9a74]"
             />
             <p className="mt-1 text-[10px] text-zinc-600">
               Google tagging adds labels at or above this score.
@@ -122,7 +122,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
             type="button"
             onClick={() => void runAutoTagging()}
             disabled={status !== "idle" || !uploadedPublicId}
-            className="h-11 w-full rounded-xl bg-violet-500 text-sm font-semibold text-white shadow-lg shadow-violet-950/30 hover:bg-violet-400 disabled:opacity-40"
+            className="h-11 w-full rounded-xl bg-brand text-sm font-semibold text-[#24100d] shadow-lg shadow-[#fa7052]/15 hover:bg-brand-200 disabled:opacity-40"
           >
             {status === "tagging" ? (
               <>
@@ -175,7 +175,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
                 invalidateResult();
                 setTransparentBackground(true);
               }}
-              className={`flex-1 rounded-lg border px-3 py-2.5 text-xs ${transparentBackground ? "border-violet-400/40 bg-violet-400/10 text-violet-100" : "border-white/10 text-zinc-400 hover:text-white"}`}
+              className={`flex-1 rounded-lg border px-3 py-2.5 text-xs ${transparentBackground ? "border-brand/40 bg-brand/10 text-brand-100" : "border-white/10 text-zinc-400 hover:text-white"}`}
             >
               Transparent
             </button>
@@ -185,7 +185,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
                 invalidateResult();
                 setTransparentBackground(false);
               }}
-              className={`flex-1 rounded-lg border px-3 py-2.5 text-xs ${!transparentBackground ? "border-violet-400/40 bg-violet-400/10 text-violet-100" : "border-white/10 text-zinc-400 hover:text-white"}`}
+              className={`flex-1 rounded-lg border px-3 py-2.5 text-xs ${!transparentBackground ? "border-brand/40 bg-brand/10 text-brand-100" : "border-white/10 text-zinc-400 hover:text-white"}`}
             >
               Solid color
             </button>
@@ -251,7 +251,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
             value={baselineBackgroundId}
             onChange={(event) => setBaselineBackgroundId(event.target.value)}
             placeholder="e.g. docs/sky"
-            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
+            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-brand/40 focus-visible:ring-brand/30 focus-visible:ring-offset-0"
           />
           <p className="mt-2 text-[11px] leading-5 text-zinc-500">
             Removes the background and converts the subject to grayscale. Add
@@ -274,7 +274,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
                   invalidateResult();
                   setAspectRatio(ratio);
                 }}
-                className={`rounded-lg border py-2.5 text-xs ${aspectRatio === ratio ? "border-violet-400/40 bg-violet-400/10 text-violet-100" : "border-white/10 text-zinc-400 hover:text-white"}`}
+                className={`rounded-lg border py-2.5 text-xs ${aspectRatio === ratio ? "border-brand/40 bg-brand/10 text-brand-100" : "border-white/10 text-zinc-400 hover:text-white"}`}
               >
                 {ratio}
               </button>
@@ -295,7 +295,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               setPrompt(event.target.value);
             }}
             placeholder="e.g. Continue the meadow and soft clouds"
-            className="min-h-24 w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs leading-5 text-white outline-none placeholder:text-zinc-600 focus:border-violet-400/50"
+            className="min-h-24 w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs leading-5 text-white outline-none placeholder:text-zinc-600 focus:border-brand/50"
           />
         </div>
       )}
@@ -312,7 +312,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               setPrompt(event.target.value);
             }}
             placeholder="e.g. the person in the background"
-            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
+            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-brand/40 focus-visible:ring-brand/30 focus-visible:ring-offset-0"
           />
           <p className="mt-2 text-[11px] leading-5 text-zinc-500">
             Describe the object to remove. Brush selection is coming soon.
@@ -336,7 +336,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               setReplaceFrom(event.target.value);
             }}
             placeholder="e.g. a red car"
-            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
+            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-brand/40 focus-visible:ring-brand/30 focus-visible:ring-offset-0"
           />
           <label
             htmlFor="replace-prompt"
@@ -352,7 +352,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               setPrompt(event.target.value);
             }}
             placeholder="e.g. a vintage red bicycle"
-            className="min-h-24 w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs leading-5 text-white outline-none placeholder:text-zinc-600 focus:border-violet-400/50"
+            className="min-h-24 w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs leading-5 text-white outline-none placeholder:text-zinc-600 focus:border-brand/50"
           />
           <p className="mt-2 text-[11px] leading-5 text-zinc-500">
             Cloudinary will replace the described object in this image.
@@ -380,7 +380,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
                 ? "e.g. the woman on the left"
                 : "e.g. an empty beach"
             }
-            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
+            className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-brand/40 focus-visible:ring-brand/30 focus-visible:ring-offset-0"
           />
         </div>
       )}
@@ -399,7 +399,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               value={recolorTarget}
               onChange={(event) => setRecolorTarget(event.target.value)}
               placeholder="e.g. sweater"
-              className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
+              className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-brand/40 focus-visible:ring-brand/30 focus-visible:ring-offset-0"
             />
           </div>
           <div>
@@ -414,7 +414,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               value={recolorColor}
               onChange={(event) => setRecolorColor(event.target.value)}
               placeholder="e.g. green or 5632a8"
-              className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
+              className="h-10 rounded-xl border-white/10 bg-white/[0.03] text-xs text-white placeholder:text-zinc-600 focus-visible:border-brand/40 focus-visible:ring-brand/30 focus-visible:ring-offset-0"
             />
           </div>
         </div>
@@ -446,7 +446,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
                       Number(event.target.value),
                     )
                   }
-                  className="mt-1 h-9 rounded-lg border-white/10 bg-white/[0.03] px-2 text-xs text-white focus-visible:border-violet-400/40 focus-visible:ring-violet-400/30 focus-visible:ring-offset-0"
+                  className="mt-1 h-9 rounded-lg border-white/10 bg-white/[0.03] px-2 text-xs text-white focus-visible:border-brand/40 focus-visible:ring-brand/30 focus-visible:ring-offset-0"
                 />
               </label>
             ))}
@@ -475,7 +475,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               step="0.1"
               value={zoomPanMaxZoom}
               onChange={(event) => setZoomPanMaxZoom(Number(event.target.value))}
-              className="w-full accent-violet-400"
+              className="w-full accent-[#ff9a74]"
             />
           </div>
           <div>
@@ -492,7 +492,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               max="30"
               value={zoomPanDuration}
               onChange={(event) => setZoomPanDuration(Number(event.target.value))}
-              className="w-full accent-violet-400"
+              className="w-full accent-[#ff9a74]"
             />
           </div>
         </div>
@@ -547,7 +547,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
               invalidateResult();
               setEffectAmount(Number(event.target.value));
             }}
-            className="w-full accent-violet-400"
+            className="w-full accent-[#ff9a74]"
           />
           {[
             "basic-brightness",
@@ -566,7 +566,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
           <p className="mb-3 text-xs font-medium text-zinc-300">Enhancement</p>
           <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.025] p-3 text-xs text-zinc-300">
             <span>Smart upscale</span>
-            <span className="rounded-md bg-violet-400/10 px-2 py-1 text-[10px] text-violet-200">
+            <span className="rounded-md bg-brand/10 px-2 py-1 text-[10px] text-brand-200">
               2×
             </span>
           </div>
@@ -605,7 +605,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
             (activeTool === "generative-replace" &&
               (!replaceFrom.trim() || !prompt.trim()))
           }
-          className="h-11 w-full rounded-xl bg-violet-500 text-sm font-semibold text-white shadow-lg shadow-violet-950/30 hover:bg-violet-400 disabled:opacity-40"
+          className="h-11 w-full rounded-xl bg-brand text-sm font-semibold text-[#24100d] shadow-lg shadow-[#fa7052]/15 hover:bg-brand-200 disabled:opacity-40"
         >
           {status === "applying" ? (
             <>
@@ -629,7 +629,7 @@ export function StudioSettingsPanel({ state, actions }: Props) {
           <ChevronDown size={14} className="text-zinc-500" />
         </summary>
         <div className="border-t border-white/[0.07] px-3 py-3">
-          <code className="break-all text-[10px] text-violet-200">
+          <code className="break-all text-[10px] text-brand-200">
             {transformationPreview}
           </code>
           {activeTool === "generative-fill" && (
@@ -644,12 +644,12 @@ export function StudioSettingsPanel({ state, actions }: Props) {
                   key={edit.id}
                   className="flex items-start gap-2 text-[10px] leading-4 text-zinc-500"
                 >
-                  <span className="shrink-0 text-violet-300">{index + 1}.</span>
+                  <span className="shrink-0 text-brand-300">{index + 1}.</span>
                   <span className="min-w-0">
                     <span className="block font-medium text-zinc-300">
                       {edit.label}
                     </span>
-                    <code className="break-all text-violet-200/80">
+                    <code className="break-all text-brand-200/80">
                       {edit.transformation}
                     </code>
                   </span>

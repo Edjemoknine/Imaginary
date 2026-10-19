@@ -18,12 +18,12 @@ const Album = async ({ params: { albumName } }: AlbumPageProps) => {
         <div className="min-w-0">
           <Link
             href="/album"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-500 transition hover:text-violet-200"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-500 transition hover:text-brand-200"
           >
             <ArrowLeft size={14} />
             All albums
           </Link>
-          <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-violet-300">
+          <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
             <span className="sr-only">Your library / Albums / </span>
             Your album
           </p>
@@ -50,7 +50,7 @@ const Album = async ({ params: { albumName } }: AlbumPageProps) => {
         </div>
       ) : (
         <div className="mt-8 flex min-h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-white/[0.02] px-6 text-center">
-          <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/[0.08] text-violet-200">
+          <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-brand/20 bg-brand/[0.08] text-brand-200">
             <FolderOpen size={21} />
           </span>
           <h2 className="mt-4 text-sm font-medium text-zinc-200">

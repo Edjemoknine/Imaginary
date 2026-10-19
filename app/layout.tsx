@@ -6,7 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "PixelMorph AI — Transform images instantly",
-  description: "Create, edit, and enhance images with Cloudinary-powered generative AI.",
+  description:
+    "Create, edit, and enhance images with Cloudinary-powered generative AI.",
 };
 
 export default function RootLayout({
@@ -16,9 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

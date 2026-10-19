@@ -6,6 +6,7 @@ const config = {
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
+    './core/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
 	],
   prefix: "",
@@ -19,6 +20,15 @@ const config = {
     },
     extend: {
       colors: {
+        brand: {
+          DEFAULT: "#ff9a74",
+          100: "#ffe3d4",
+          200: "#ffc0a8",
+          300: "#ffad8b",
+          400: "#ff9a74",
+          500: "#f0805d",
+          600: "#d8664b",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

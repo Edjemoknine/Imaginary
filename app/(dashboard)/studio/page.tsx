@@ -99,7 +99,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                     status === "downloading" ||
                     status === "saving"
                   }
-                  className="h-9 rounded-xl bg-violet-500 px-3 text-xs font-semibold text-white shadow-lg shadow-violet-950/30 hover:bg-violet-400 disabled:opacity-40"
+                  className="h-9 rounded-xl bg-brand px-3 text-xs font-semibold text-[#24100d] shadow-lg shadow-[#fa7052]/15 hover:bg-brand-200 disabled:opacity-40"
                 >
                   {status === "saving" ? (
                     <Loader2 size={14} className="mr-1.5 animate-spin" />
@@ -129,16 +129,16 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                           key={slug}
                           type="button"
                           onClick={() => setActiveTool(slug)}
-                          className={`group flex items-center gap-3 rounded-xl p-2.5 text-left transition lg:p-3 ${activeTool === slug ? "bg-violet-400/[0.12] text-violet-100 ring-1 ring-inset ring-violet-300/15" : "text-zinc-400 hover:bg-white/[0.05] hover:text-zinc-100"}`}
+                          className={`group flex items-center gap-3 rounded-xl p-2.5 text-left transition lg:p-3 ${activeTool === slug ? "bg-brand/[0.12] text-brand-100 ring-1 ring-inset ring-brand-300/20" : "text-zinc-400 hover:bg-white/[0.05] hover:text-zinc-100"}`}
                         >
                           <span
-                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${activeTool === slug ? "bg-violet-400/10 text-violet-300" : "bg-white/[0.05] text-zinc-500 group-hover:text-zinc-300"}`}
+                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${activeTool === slug ? "bg-brand/10 text-brand-300" : "bg-white/[0.05] text-zinc-500 group-hover:text-zinc-300"}`}
                           >
                             <Icon size={17} />
                           </span>
                           <span className="min-w-0">
                             <span
-                              className={`block truncate text-xs font-medium ${activeTool === slug ? "text-violet-100" : "text-zinc-100"}`}
+                              className={`block truncate text-xs font-medium ${activeTool === slug ? "text-brand-100" : "text-zinc-100"}`}
                             >
                               {label}
                             </span>
@@ -152,8 +152,8 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                 </section>
               ))}
             </div>
-            <div className="mt-5 hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-violet-500/[0.10] to-fuchsia-500/[0.04] p-4 lg:block">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-violet-400/10 text-violet-200">
+            <div className="mt-5 hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-brand/[0.10] to-[#f7778e]/[0.04] p-4 lg:block">
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand/10 text-brand-200">
                 <Sparkles size={16} />
               </span>
               <p className="text-xs font-medium text-zinc-300">
@@ -197,7 +197,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
               }}
               onDragLeave={() => setDragging(false)}
               onDrop={onDrop}
-              className={`relative flex flex-1 items-center justify-center overflow-hidden rounded-2xl border bg-[radial-gradient(circle_at_50%_45%,#282431_0%,#19171e_55%,#141218_100%)] p-5 transition ${dragging ? "border-violet-300 bg-violet-400/10" : "border-white/[0.08]"}`}
+              className={`relative flex flex-1 items-center justify-center overflow-hidden rounded-2xl border bg-[radial-gradient(circle_at_50%_45%,#292421_0%,#191716_55%,#141211_100%)] p-5 transition ${dragging ? "border-brand-300 bg-brand/10" : "border-white/[0.08]"}`}
             >
               <div
                 className="pointer-events-none absolute inset-0 opacity-[0.14]"
@@ -224,7 +224,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                         <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/55 backdrop-blur-sm">
                           <Loader2
                             size={29}
-                            className="animate-spin text-violet-300"
+                            className="animate-spin text-brand-300"
                           />
                           <p className="text-sm font-medium text-white">
                             {status === "uploading"
@@ -240,7 +240,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                         {status === "uploading" ? (
                           <Loader2
                             size={26}
-                            className="animate-spin text-violet-300"
+                            className="animate-spin text-brand-300"
                           />
                         ) : (
                           <ImageIcon size={26} />
@@ -270,7 +270,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                   )}
                 </div>
                 {dragging && (
-                  <div className="absolute inset-0 flex items-center justify-center rounded-xl border-2 border-dashed border-violet-300 bg-violet-950/60 text-sm font-medium text-violet-100">
+                  <div className="absolute inset-0 flex items-center justify-center rounded-xl border-2 border-dashed border-brand-300 bg-[#713d31]/60 text-sm font-medium text-brand-100">
                     <Upload size={18} className="mr-2" /> Drop image to upload
                   </div>
                 )}
@@ -283,7 +283,7 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                   <button
                     type="button"
                     onClick={() => inputRef.current?.click()}
-                    className="font-medium text-violet-200 hover:text-white"
+                    className="font-medium text-brand-200 hover:text-white"
                   >
                     browse files
                   </button>
@@ -311,9 +311,9 @@ export default function StudioPage({ searchParams }: StudioPageProps) {
                 {appliedEdits.map((edit, index) => (
                   <span
                     key={edit.id}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-violet-300/15 bg-violet-300/[0.06] px-2.5 py-1 text-[10px] text-violet-100"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-brand-300/15 bg-brand-300/[0.06] px-2.5 py-1 text-[10px] text-brand-100"
                   >
-                    <span className="text-violet-300">{index + 1}.</span>{" "}
+                    <span className="text-brand-300">{index + 1}.</span>{" "}
                     {edit.label}
                   </span>
                 ))}

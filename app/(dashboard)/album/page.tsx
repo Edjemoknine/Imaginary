@@ -11,7 +11,7 @@ const Albums = async () => {
     <section className="mx-auto min-h-[calc(100vh-72px)] max-w-7xl px-5 py-8 text-zinc-100 sm:px-8 sm:py-10">
       <div className="flex items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-300">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
             Your library
           </p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -31,7 +31,7 @@ const Albums = async () => {
         </div>
       ) : (
         <div className="mt-8 flex min-h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-white/[0.02] px-6 text-center">
-          <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/[0.08] text-violet-200">
+          <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-brand/20 bg-brand/[0.08] text-brand-200">
             <FolderOpen size={21} />
           </span>
           <h2 className="mt-4 text-sm font-medium text-zinc-200">

@@ -9,74 +9,15 @@ import {
   Tag,
   Wand2,
 } from "lucide-react";
+import type {
+  AspectRatio,
+  BasicToolSlug,
+  StudioTool,
+  ToolSlug,
+  TransformationOptions,
+} from "@/types/studio";
 
-export type ToolSlug =
-  | "background-removal"
-  | "generative-fill"
-  | "object-removal"
-  | "generative-replace"
-  | "image-restoration"
-  | "smart-crop"
-  | "face-privacy"
-  | "enhance"
-  | "auto-enhance"
-  | "improve-indoor"
-  | "baseline"
-  | "cartoonify"
-  | "extract"
-  | "generative-background-replace"
-  | "generative-recolor"
-  | "gradient-fade"
-  | "camera-360"
-  | "zoom-pan"
-  | BasicToolSlug
-  | "auto-tagging";
-
-export type AspectRatio = "1:1" | "16:9" | "9:16";
-export type BasicToolSlug =
-  | "basic-crop-fill"
-  | "basic-fit"
-  | "basic-face-thumbnail"
-  | "basic-auto-fill-pad"
-  | "basic-rounded"
-  | "basic-circular"
-  | "basic-rotate"
-  | "basic-blur"
-  | "basic-grayscale"
-  | "basic-sepia"
-  | "basic-brightness"
-  | "basic-contrast"
-  | "basic-saturation"
-  | "basic-sharpen"
-  | "basic-pixelate"
-  | "basic-opacity"
-  | "basic-tint"
-  | "basic-shadow"
-  | "basic-border";
-
-export type StudioStatus =
-  | "idle"
-  | "uploading"
-  | "applying"
-  | "downloading"
-  | "saving"
-  | "tagging";
-
-export type AppliedEdit = {
-  id: string;
-  label: string;
-  transformation: string;
-};
-
-export type Tool = {
-  slug: ToolSlug;
-  category: "AI tools" | "Basic";
-  label: string;
-  description: string;
-  icon: typeof Sparkles;
-};
-
-const basicTools: Omit<Tool, "category">[] = [
+const basicTools: Omit<StudioTool, "category">[] = [
   { slug: "basic-crop-fill", label: "Fill crop", description: "Crop to fill and keep the subject in view", icon: Crop },
   { slug: "basic-fit", label: "Fit", description: "Fit inside the image dimensions", icon: Expand },
   { slug: "basic-face-thumbnail", label: "Face thumbnail", description: "Create a circular face-focused thumbnail", icon: ScanFace },
@@ -98,7 +39,7 @@ const basicTools: Omit<Tool, "category">[] = [
   { slug: "basic-border", label: "Border", description: "Add a light border", icon: ImageIcon },
 ];
 
-export const tools: Tool[] = [
+export const tools: StudioTool[] = [
   {
     slug: "background-removal",
     category: "AI tools",
@@ -240,24 +181,6 @@ export const isToolSlug = (value: string | undefined): value is ToolSlug =>
 
 const normalizePrompt = (value: string) =>
   value.replace(/[,;/]/g, " ").replace(/\s+/g, " ").trim();
-
-export type TransformationOptions = {
-  tool: ToolSlug;
-  aspectRatio: AspectRatio;
-  prompt: string;
-  replaceFrom: string;
-  transparentBackground: boolean;
-  background: string;
-  effectAmount: number;
-  baselineBackgroundId: string;
-  recolorTarget: string;
-  recolorColor: string;
-  cameraUp: number;
-  cameraRight: number;
-  cameraFrames: number;
-  zoomPanMaxZoom: number;
-  zoomPanDuration: number;
-};
 
 const basicTransformations: Record<
   BasicToolSlug,

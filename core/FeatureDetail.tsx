@@ -5,7 +5,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowRight, Check, ChevronRight, Code2, Copy, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Feature, featureBySlug, features, imageUrl } from "./features";
+import {
+  featureBySlug,
+  features,
+  imageUrl,
+} from "@/helpers/feature-catalog";
+import type { Feature } from "@/types/features";
 
 const codeSamples = (feature: Feature) => ({
   URL: `https://res.cloudinary.com/<cloud-name>/image/upload/${feature.transformation}/sample.jpg`,

@@ -11,22 +11,15 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import type { serachResults } from "@/app/(dashboard)/gallery/page";
-import { deleteImageFromCloudinary } from "@/components/shared/actions";
-
-type Props = {
-  image: serachResults;
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onDeleted: () => void;
-};
+import type { DeleteImageDialogProps } from "@/types/components";
+import { deleteImageFromCloudinary } from "@/actions/media";
 
 export default function DeleteImageDialog({
   image,
   open,
   onOpenChange,
   onDeleted,
-}: Props) {
+}: DeleteImageDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 

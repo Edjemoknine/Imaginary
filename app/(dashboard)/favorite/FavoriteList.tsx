@@ -1,9 +1,9 @@
 "use client";
 import CloudIMG from "@/components/shared/CloudIMG";
-import type { serachResults } from "../gallery/page";
+import type { SearchResult } from "@/types/gallery";
 import { useEffect, useState } from "react";
 
-const FavoriteList = ({ resources }: { resources: serachResults[] }) => {
+const FavoriteList = ({ resources }: { resources: SearchResult[] }) => {
   const [resourcesState, setResourcesState] = useState(resources);
   useEffect(() => {
     setResourcesState(resources);
@@ -32,7 +32,7 @@ const FavoriteList = ({ resources }: { resources: serachResults[] }) => {
           key={img.public_id}
           public_id={img.public_id}
           img={img}
-          onUnheart={(unheartedResource: serachResults) => {
+          onUnheart={(unheartedResource: SearchResult) => {
             setResourcesState((currentResources) =>
               currentResources.filter(
                 (resource) => resource.public_id !== unheartedResource.public_id,

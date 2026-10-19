@@ -1,35 +1,22 @@
 "use client";
 
-import {
-  ChangeEvent,
-  DragEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
+import type { ChangeEvent, DragEvent } from "react";
 import { CldImage, type CldImageProps } from "next-cloudinary";
-import { autoTagExistingImage, saveTransformedImage } from "./actions";
+import { autoTagExistingImage, saveTransformedImage } from "@/actions/studio";
 import {
-  AspectRatio,
-  AppliedEdit,
   buildTransformation,
   isToolSlug,
+  tools,
+} from "@/helpers/studio-model";
+import type {
+  AspectRatio,
+  AppliedEdit,
+  CloudinaryUploadResponse,
+  StudioOptions,
   StudioStatus,
   ToolSlug,
-  tools,
-} from "./studio-model";
-
-type CloudinaryUploadResponse = {
-  public_id?: string;
-  original_filename?: string;
-  format?: string;
-  error?: { message?: string };
-};
-
-type StudioOptions = {
-  requestedTool?: string;
-  requestedPublicId?: string;
-};
+} from "@/types/studio";
 
 export function useStudio({
   requestedTool,

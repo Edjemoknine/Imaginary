@@ -1,16 +1,10 @@
 import cloudinary from "cloudinary";
 import { AlbumCard } from "./albumCard";
 import { FolderOpen } from "lucide-react";
-
-export type serachResults = {
-  public_id: string;
-  tags: string[];
-};
-
-export type Folder = { name: string; path: string };
+import type { AlbumFolder } from "@/types/albums";
 const Albums = async () => {
   const { folders } = (await cloudinary.v2.api.root_folders()) as {
-    folders: Folder[];
+    folders: AlbumFolder[];
   };
 
   return (

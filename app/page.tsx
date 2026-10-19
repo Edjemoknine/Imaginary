@@ -1,5 +1,5 @@
-import LandingContent from "@/components/pixelmorph/LandingContent";
-import SiteShell from "@/components/pixelmorph/SiteShell";
+import LandingContent from "@/core/LandingContent";
+import SiteShell from "@/core/SiteShell";
 
 export default function Home() {
   return (

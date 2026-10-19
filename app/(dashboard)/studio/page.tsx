@@ -9,16 +9,10 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CldImage } from "next-cloudinary";
-import { useStudio } from "./useStudio";
-import { tools } from "./studio-model";
+import { useStudio } from "@/hooks/useStudio";
+import { tools } from "@/helpers/studio-model";
 import { StudioSettingsPanel } from "./StudioSettingsPanel";
-
-type StudioPageProps = {
-  searchParams?: {
-    tool?: string | string[];
-    publicId?: string | string[];
-  };
-};
+import type { StudioPageProps } from "@/types/studio";
 
 export default function StudioPage({ searchParams }: StudioPageProps) {
   const requestedTool = Array.isArray(searchParams?.tool)

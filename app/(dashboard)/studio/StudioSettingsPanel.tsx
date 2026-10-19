@@ -3,8 +3,8 @@
 import { ChevronDown, Loader2, Sparkles, Tag, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import type { useStudio } from "./useStudio";
-import type { AspectRatio } from "./studio-model";
+import type { useStudio } from "@/hooks/useStudio";
+import type { AspectRatio } from "@/types/studio";
 
 type Props = Pick<ReturnType<typeof useStudio>, "state" | "actions">;
 

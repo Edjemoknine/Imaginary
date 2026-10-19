@@ -1,12 +1,11 @@
-import { Folder } from "@/app/(dashboard)/album/page";
-import React from "react";
 import cloudinary from "cloudinary";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import type { AlbumFolder } from "@/types/albums";
 
 const AlbumSubNav = async () => {
   const { folders } = (await cloudinary.v2.api.root_folders()) as {
-    folders: Folder[];
+    folders: AlbumFolder[];
   };
   return (
     <>

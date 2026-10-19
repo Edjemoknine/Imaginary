@@ -1,5 +1,5 @@
 import cloudinary from "cloudinary";
-import { serachResults } from "../gallery/page";
+import type { SearchResult } from "@/types/gallery";
 
 import FavoriteList from "./FavoriteList";
 const Favorite = async () => {
@@ -8,7 +8,7 @@ const Favorite = async () => {
     .sort_by("created_at", "desc")
     .with_field("tags")
     .max_results(30)
-    .execute()) as { resources: serachResults[] };
+    .execute()) as { resources: SearchResult[] };
 
   return (
     <section className="mx-auto min-h-[calc(100vh-72px)] max-w-7xl px-5 py-8 text-zinc-100 sm:px-8 sm:py-10">

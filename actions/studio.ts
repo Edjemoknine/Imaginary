@@ -1,48 +1,16 @@
 "use server";
 
 import cloudinary from "cloudinary";
+import type {
+  AutoTagResult,
+  SaveTransformedImageResult,
+} from "@/types/actions";
+import {
+  ensureCloudinaryConfigured,
+  validatePublicId,
+} from "@/helpers/cloudinary";
 
-export type AutoTagResult =
-  | { success: true; tags: string[] }
-  | { success: false; error: string };
-
-export type SaveTransformedImageResult =
-  | { success: true; publicId: string }
-  | { success: false; error: string };
-
-const savePublicIdPattern = /^[A-Za-z0-9/_.-]+$/;
 const tagPublicIdPattern = /^[A-Za-z0-9/_-]+$/;
-
-function validatePublicId(
-  publicId: unknown,
-  pattern: RegExp,
-  errorMessage: string,
-): string {
-  if (typeof publicId !== "string") {
-    throw new Error(errorMessage);
-  }
-
-  const trimmedPublicId = publicId.trim();
-  const segments = trimmedPublicId.split("/");
-
-  if (
-    !trimmedPublicId ||
-    trimmedPublicId.length > 200 ||
-    !pattern.test(trimmedPublicId) ||
-    segments.some((segment) => segment === "." || segment === "..")
-  ) {
-    throw new Error(errorMessage);
-  }
-
-  return trimmedPublicId;
-}
-
-function ensureCloudinaryConfigured(): void {
-  const { cloud_name, api_key, api_secret } = cloudinary.v2.config();
-  if (!cloud_name || !api_key || !api_secret) {
-    throw new Error("Cloudinary server credentials are not configured.");
-  }
-}
 
 function getErrorMessage(error: unknown, fallback: string): string {
   return error instanceof Error ? error.message : fallback;
@@ -55,7 +23,6 @@ export async function saveTransformedImage(
   try {
     const trimmedPublicId = validatePublicId(
       publicId,
-      savePublicIdPattern,
       "Public ID contains unsupported characters.",
     );
     if (
@@ -111,8 +78,8 @@ export async function autoTagExistingImage(
   try {
     const trimmedPublicId = validatePublicId(
       publicId,
-      tagPublicIdPattern,
       "Public ID must contain only letters, numbers, slashes, underscores, or hyphens.",
+      tagPublicIdPattern,
     );
     if (!Number.isFinite(confidence) || confidence < 0 || confidence > 1) {
       throw new Error("Tag confidence must be between 0 and 1.");

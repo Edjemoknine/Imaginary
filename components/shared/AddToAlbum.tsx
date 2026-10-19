@@ -21,23 +21,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useCallback, useEffect, useState } from "react";
-import type { serachResults } from "@/app/(dashboard)/gallery/page";
+import type { ImageDialogProps } from "@/types/components";
 import {
-  AddImageToAlbum,
+  addImageToAlbum,
   getAlbumNames,
-  type AlbumOption,
-} from "@/components/shared/actions";
+} from "@/actions/media";
+import type { AlbumOption } from "@/types/actions";
 import { useRouter } from "next/navigation";
 
 const CREATE_ALBUM_VALUE = "__create_new_album__";
 
-type Props = {
-  image: serachResults;
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-};
-
-const AddToAlbum = ({ image, open, onOpenChange }: Props) => {
+const AddToAlbum = ({ image, open, onOpenChange }: ImageDialogProps) => {
   const [albums, setAlbums] = useState<AlbumOption[]>([]);
   const [selectedAlbum, setSelectedAlbum] = useState(CREATE_ALBUM_VALUE);
   const [albumName, setAlbumName] = useState("");
@@ -105,7 +99,7 @@ const AddToAlbum = ({ image, open, onOpenChange }: Props) => {
     setIsAdding(true);
     setErrorMessage("");
     try {
-      await AddImageToAlbum(destinationAlbum, image);
+      await addImageToAlbum(destinationAlbum, image);
       setAlbumName("");
       onOpenChange(false);
       router.refresh();

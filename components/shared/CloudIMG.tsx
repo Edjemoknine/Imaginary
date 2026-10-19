@@ -1,19 +1,11 @@
 "use client";
 import { CldImage } from "next-cloudinary";
-import type { CldImageProps } from "next-cloudinary";
 import { Heart } from "lucide-react";
-import { addFavorite } from "@/app/(dashboard)/gallery/actions";
+import { addFavorite } from "@/actions/gallery";
 import { useState, useTransition } from "react";
-import type { serachResults } from "@/app/(dashboard)/gallery/page";
 import { useRouter } from "next/navigation";
 import DropDownMenu from "./DropDownMenu";
-
-type CloudImageProps = Omit<CldImageProps, "src"> & {
-  public_id: string;
-  img: serachResults;
-  onUnheart?: (unheartedResource: serachResults) => void;
-  onDelete?: (deletedResource: serachResults) => void;
-};
+import type { CloudImageCardProps } from "@/types/components";
 
 const CloudIMG = ({
   public_id,
@@ -21,7 +13,7 @@ const CloudIMG = ({
   onUnheart,
   onDelete,
   ...imageProps
-}: CloudImageProps) => {
+}: CloudImageCardProps) => {
   const [isPending, startTransition] = useTransition();
   const [isDeleted, setIsDeleted] = useState(false);
 

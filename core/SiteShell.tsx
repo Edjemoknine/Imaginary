@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DashboardSidebar from "./DashboardSidebar";
+import type { SiteShellProps } from "@/types/components";
 
 function PixelMorphHeader() {
   return (
@@ -52,13 +53,19 @@ function PixelMorphFooter() {
   );
 }
 
-type SiteShellProps = {
-  children: React.ReactNode;
-  variant?: "landing" | "dashboard";
-};
-
 export default function SiteShell({ children, variant = "dashboard" }: SiteShellProps) {
   const pathname = usePathname();
+  const pageTitle = pathname === "/studio"
+    ? "AI Studio"
+    : pathname.startsWith("/album")
+      ? "Albums"
+      : pathname.startsWith("/gallery")
+        ? "Gallery"
+        : pathname.startsWith("/favorite")
+          ? "Favorites"
+          : pathname.startsWith("/features/")
+            ? "AI Tools"
+            : "Image workspace";
 
   if (variant === "landing") {
     return (
@@ -72,24 +79,20 @@ export default function SiteShell({ children, variant = "dashboard" }: SiteShell
 
   return (
     <div className="min-h-screen bg-[#09090c] text-zinc-100">
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#09090c]/90 backdrop-blur-xl">
-        <div className="flex h-[72px] items-center justify-between px-4 sm:px-6">
+      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#09090c]/90 backdrop-blur-xl">
+        <div className="flex h-20 w-full items-center justify-between px-5 sm:px-8 lg:px-10">
           <div className="flex min-w-0 items-center gap-4">
             <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="PixelMorph AI home">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white shadow-lg shadow-violet-950/30">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white shadow-lg shadow-violet-950/30">
                 <Sparkles size={19} />
               </span>
-              <span className="hidden text-[16px] font-semibold tracking-tight text-white sm:block">
+              <span className="text-lg font-semibold tracking-tight text-white">
                 PixelMorph <span className="text-violet-300">AI</span>
               </span>
             </Link>
             <span className="hidden h-6 w-px bg-white/10 sm:block" />
             <span className="truncate text-sm font-medium text-zinc-300">
-              {pathname === "/studio"
-                ? "AI Studio"
-                : pathname.startsWith("/features/")
-                  ? "AI Tools"
-                  : "Image workspace"}
+              {pageTitle}
             </span>
           </div>
           <Button asChild variant="outline" className="h-9 rounded-lg border-white/10 bg-white/[0.03] px-3 text-xs text-zinc-300 hover:bg-white/[0.08] hover:text-white">
@@ -101,7 +104,7 @@ export default function SiteShell({ children, variant = "dashboard" }: SiteShell
           </Button>
         </div>
       </header>
-      <div className="flex min-h-[calc(100vh-72px)] flex-col md:flex-row">
+      <div className="flex min-h-[calc(100vh-80px)]">
         <DashboardSidebar />
         <main className="min-w-0 flex-1">{children}</main>
       </div>

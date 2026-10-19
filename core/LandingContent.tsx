@@ -17,7 +17,7 @@ import {
   Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { features, imageUrl, sampleImages } from "./features";
+import { features, imageUrl, sampleImages } from "@/helpers/feature-catalog";
 
 function BeforeAfter() {
   const [position, setPosition] = useState(52);

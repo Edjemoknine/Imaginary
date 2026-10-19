@@ -7,7 +7,7 @@ import {
 import { useState } from "react";
 import { FolderPlus, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import AddToAlbum from "./AddToAlbum";
-import type { serachResults } from "@/app/(dashboard)/gallery/page";
+import type { SearchResult } from "@/types/gallery";
 import Link from "next/link";
 import DeleteImageDialog from "./DeleteImageDialog";
 
@@ -16,7 +16,7 @@ const DropDownMenu = ({
   image,
   onDeleted,
 }: {
-  image: serachResults;
+  image: SearchResult;
   className: string;
   onDeleted: () => void;
 }) => {

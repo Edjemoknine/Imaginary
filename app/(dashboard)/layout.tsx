@@ -1,4 +1,4 @@
-import SiteShell from "@/components/pixelmorph/SiteShell";
+import SiteShell from "@/core/SiteShell";
 
 export default function DashboardLayout({
   children,

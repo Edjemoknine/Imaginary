@@ -1,32 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import type { FormEvent } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+import { useGallerySearch } from "@/hooks/useGallerySearch";
+import type { SearchFormProps } from "@/types/gallery";
 
-const SearchForm = ({ initialState }: { initialState: string }) => {
-  const [search, setSearch] = useState(initialState);
-  const router = useRouter();
-
-  useEffect(() => {
-    setSearch(initialState);
-  }, [initialState]);
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    router.replace(
-      search.trim()
-        ? `/gallery?search=${encodeURIComponent(search.trim())}`
-        : "/gallery",
-    );
-    router.refresh();
-  };
+const SearchForm = ({ initialState }: SearchFormProps) => {
+  const { search, setSearch, submitSearch } = useGallerySearch(initialState);
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={submitSearch}
       className="w-full rounded-2xl border border-white/[0.08] bg-[#141319] p-3 sm:max-w-md"
     >
       <Label

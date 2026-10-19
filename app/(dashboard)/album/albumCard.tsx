@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, FolderOpen } from "lucide-react";
-import type { Folder } from "@/app/(dashboard)/album/page";
+import type { AlbumFolder } from "@/types/albums";
 import Link from "next/link";
 
-export function AlbumCard({ folder }: { folder: Folder }) {
+export function AlbumCard({ folder }: { folder: AlbumFolder }) {
   return (
     <article className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-[#141319] transition hover:-translate-y-0.5 hover:border-violet-400/25">
       <div className="flex items-start justify-between gap-4 p-5">

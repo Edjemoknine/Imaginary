@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { CldImage } from "next-cloudinary";
 import { useStudio } from "@/hooks/useStudio";
 import { tools } from "@/helpers/studio-model";
-import { StudioSettingsPanel } from "./StudioSettingsPanel";
+import { StudioSettingsPanel } from "@/components/shared/StudioSettingsPanel";
 import type { StudioPageProps } from "@/types/studio";
 
 export default function StudioPage({ searchParams }: StudioPageProps) {

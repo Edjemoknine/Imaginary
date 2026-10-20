@@ -1,11 +1,8 @@
-import cloudinary from "cloudinary";
-import { AlbumCard } from "./albumCard";
+import { AlbumCard } from "@/components/shared/albumCard";
 import { FolderOpen } from "lucide-react";
-import type { AlbumFolder } from "@/types/albums";
+import { folderAction } from "@/actions/album";
 const Albums = async () => {
-  const { folders } = (await cloudinary.v2.api.root_folders()) as {
-    folders: AlbumFolder[];
-  };
+  const { folders } = await folderAction();
 
   return (
     <section className="mx-auto min-h-[calc(100vh-72px)] max-w-7xl px-5 py-8 text-zinc-100 sm:px-8 sm:py-10">

@@ -1,16 +1,12 @@
 import CloudIMG from "@/components/shared/CloudIMG";
 import UploadButton from "@/components/shared/UploadButton";
-import cloudinary from "cloudinary";
 import { ArrowLeft, FolderOpen } from "lucide-react";
 import Link from "next/link";
 import type { SearchResult } from "@/types/gallery";
 import type { AlbumPageProps } from "@/types/routes";
+import { albumAction } from "@/actions/album";
 const Album = async ({ params: { albumName } }: AlbumPageProps) => {
-  const results = await cloudinary.v2.search
-    .expression(`resource_type:image AND folder=${albumName}`)
-    .with_field("tags")
-    .max_results(60)
-    .execute();
+  const results = await albumAction(albumName);
 
   return (
     <section className="mx-auto min-h-[calc(100vh-80px)] max-w-screen-2xl px-5 py-8 text-zinc-100 sm:px-8 sm:py-10">

@@ -4,14 +4,10 @@ import cloudinary from "cloudinary";
 import { unstable_noStore } from "next/cache";
 import type { SearchResult } from "@/types/gallery";
 import type { GalleryPageProps } from "@/types/routes";
+import { getImages } from "@/actions/gallery";
 unstable_noStore();
 const Gallery = async ({ searchParams: { search = "" } }: GalleryPageProps) => {
-  const results = (await cloudinary.v2.search
-    .expression(`resource_type:image${search ? ` AND tags=${search}` : ""}`)
-    .sort_by("created_at", "desc")
-    .with_field("tags")
-    .max_results(60)
-    .execute()) as { resources: SearchResult[] };
+  const results = await getImages(search);
   return (
     <section className="mx-auto min-h-[calc(100vh-72px)] max-w-7xl px-5 py-8 text-zinc-100 sm:px-8 sm:py-10">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">

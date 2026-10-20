@@ -1,4 +1,4 @@
-import SiteShell from "@/core/SiteShell";
+import SiteShell from "@/components/core/SiteShell";
 
 export default function DashboardLayout({
   children,

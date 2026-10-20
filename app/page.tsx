@@ -1,5 +1,5 @@
-import LandingContent from "@/core/LandingContent";
-import SiteShell from "@/core/SiteShell";
+import LandingContent from "@/components/core/LandingContent";
+import SiteShell from "@/components/core/SiteShell";
 
 export default function Home() {
   return (

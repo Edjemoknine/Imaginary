@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PixelMorph AI — Transform images instantly",
+  title: "Eido AI — Transform images instantly",
   description:
     "Create, edit, and enhance images with Cloudinary-powered generative AI.",
 };

@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Album, ArrowUpRight, Heart, Image, Sparkles } from "lucide-react";
+import {
+  Album,
+  ArrowUpRight,
+  CircleUserRound,
+  Heart,
+  Image,
+  Sparkles,
+} from "lucide-react";
 import { cn } from "@/helpers/cn";
 
 const libraryLinks = [
@@ -38,9 +45,7 @@ function NavLink({
         size={17}
         className={cn(
           "shrink-0 transition",
-          active
-            ? "text-brand-300"
-            : "text-zinc-500 group-hover:text-zinc-300",
+          active ? "text-brand-300" : "text-zinc-500 group-hover:text-zinc-300",
         )}
       />
       <span className="sr-only md:not-sr-only md:truncate">{label}</span>
@@ -58,7 +63,7 @@ export default function DashboardSidebar() {
     <aside className="w-16 shrink-0 border-r border-white/[0.08] bg-[#0d0c11] md:min-h-[calc(100vh-80px)] md:w-[248px]">
       <nav
         aria-label="Dashboard"
-        className="scrollbar-none sticky top-20 flex max-h-[calc(100vh-80px)] flex-col overflow-y-auto px-2 py-3 md:px-4 md:py-5"
+        className="scrollbar-none sticky top-20 flex min-h-[calc(100vh-80px)] max-h-[calc(100vh-80px)] flex-col overflow-y-auto px-2 py-3 md:px-4 md:py-5"
       >
         <div className="flex flex-1 flex-col gap-1">
           <div className="flex flex-col gap-1">
@@ -84,23 +89,6 @@ export default function DashboardSidebar() {
               />
             ))}
           </div>
-
-          {/*   <div className="flex items-center gap-1.5 md:mt-6 md:flex-col md:items-stretch md:gap-1">
-            <p className="hidden px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-600 md:block">
-              AI tools
-            </p>
-            {features.map((feature) => (
-              <NavLink
-                key={feature.slug}
-                href={`/features/${feature.slug}`}
-                label={feature.shortTitle}
-                icon={
-                  toolIcons[feature.slug as keyof typeof toolIcons] ?? Sparkles
-                }
-                active={pathname === `/features/${feature.slug}`}
-              />
-            ))}
-          </div> */}
         </div>
 
         <div className="mt-6 hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-brand/[0.10] to-[#f7778e]/[0.04] p-4 md:mt-auto md:block">
@@ -119,6 +107,15 @@ export default function DashboardSidebar() {
           >
             Open studio <ArrowUpRight size={13} />
           </Link>
+        </div>
+
+        <div className="mt-auto border-t border-white/[0.08] pt-3">
+          <NavLink
+            href="/profile"
+            label="Profile"
+            icon={CircleUserRound}
+            active={pathname === "/profile"}
+          />
         </div>
       </nav>
     </aside>

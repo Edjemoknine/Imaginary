@@ -5,6 +5,7 @@ const isDashboardRoute = createRouteMatcher([
   "/album(.*)",
   "/favorite(.*)",
   "/gallery(.*)",
+  "/profile(.*)",
   "/studio(.*)",
 ]);
 const isLandingRoute = createRouteMatcher(["/"]);

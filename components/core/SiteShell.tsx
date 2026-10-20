@@ -1,8 +1,9 @@
 "use client";
 
+import { useClerk } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DashboardSidebar from "./DashboardSidebar";
 import BrandLogo from "./BrandLogo";
@@ -70,6 +71,7 @@ export default function SiteShell({
   children,
   variant = "dashboard",
 }: SiteShellProps) {
+  const { signOut } = useClerk();
   const pathname = usePathname();
   const pageTitle =
     pathname === "/studio"
@@ -80,9 +82,11 @@ export default function SiteShell({
           ? "Gallery"
           : pathname.startsWith("/favorite")
             ? "Favorites"
-            : pathname.startsWith("/features/")
-              ? "AI Tools"
-              : "Image workspace";
+            : pathname.startsWith("/profile")
+              ? "Profile"
+              : pathname.startsWith("/features/")
+                ? "AI Tools"
+                : "Image workspace";
 
   if (variant === "landing") {
     return (
@@ -112,15 +116,13 @@ export default function SiteShell({
             </span>
           </div>
           <Button
-            asChild
             variant="outline"
             className="h-9 rounded-lg border-white/10 bg-white/[0.03] px-3 text-xs text-zinc-300 hover:bg-white/[0.08] hover:text-white"
+            onClick={() => void signOut({ redirectUrl: "/" })}
           >
-            <Link href="/">
-              <span className="hidden sm:inline">Back to website</span>
-              <span className="sm:hidden">Website</span>
-              <ArrowUpRight className="ml-1.5" size={14} />
-            </Link>
+            <span className="hidden sm:inline">Sign out</span>
+            <span className="sm:hidden">Logout</span>
+            <LogOut className="ml-1.5" size={14} />
           </Button>
         </div>
       </header>

@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@clerk/nextjs/server";
 import cloudinary from "cloudinary";
 import type {
   AutoTagResult,
@@ -76,6 +77,14 @@ export async function autoTagExistingImage(
   confidence: number,
 ): Promise<AutoTagResult> {
   try {
+    const { has, userId } = await auth();
+    if (
+      !userId ||
+      (!has({ plan: "pro" }) && !has({ plan: "enterprise" }))
+    ) {
+      throw new Error("Upgrade to Pro or Enterprise to use AI tools.");
+    }
+
     const trimmedPublicId = validatePublicId(
       publicId,
       "Public ID must contain only letters, numbers, slashes, underscores, or hyphens.",

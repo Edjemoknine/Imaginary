@@ -84,6 +84,8 @@ export default function SiteShell({
             ? "Favorites"
             : pathname.startsWith("/profile")
               ? "Profile"
+              : pathname.startsWith("/pricing")
+                ? "Plans & pricing"
               : pathname.startsWith("/features/")
                 ? "AI Tools"
                 : "Image workspace";

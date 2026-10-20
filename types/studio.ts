@@ -95,11 +95,5 @@ export type CloudinaryUploadResponse = {
 export type StudioOptions = {
   requestedTool?: string;
   requestedPublicId?: string;
-};
-
-export type StudioPageProps = {
-  searchParams?: {
-    tool?: string | string[];
-    publicId?: string | string[];
-  };
+  canUseAiTools: boolean;
 };

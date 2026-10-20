@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { features, imageUrl, sampleImages } from "@/helpers/feature-catalog";
+import { PricingTable } from "@clerk/nextjs";
 
 const accent = "text-[#ff9a74]";
 const border = "border-white/[0.09]";
@@ -93,7 +94,9 @@ function SectionHeading({
 }) {
   return (
     <div className="max-w-xl">
-      <p className={`text-[11px] font-semibold uppercase tracking-[0.2em] ${accent}`}>
+      <p
+        className={`text-[11px] font-semibold uppercase tracking-[0.2em] ${accent}`}
+      >
         {eyebrow}
       </p>
       <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.04em] text-white sm:text-4xl">
@@ -160,7 +163,8 @@ export default function LandingContent() {
             </div>
             <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-zinc-500">
               <span className="inline-flex items-center gap-2">
-                <Check size={14} className={accent} /> No editing experience needed
+                <Check size={14} className={accent} /> No editing experience
+                needed
               </span>
               <span className="inline-flex items-center gap-2">
                 <Check size={14} className={accent} /> Start with your own image
@@ -170,15 +174,21 @@ export default function LandingContent() {
 
           <div className="relative mx-auto w-full max-w-[640px] lg:mr-0">
             <div className="absolute -inset-8 rounded-[40px] bg-gradient-to-br from-[#ff9068]/[0.12] via-transparent to-[#eb6e8d]/[0.10] blur-2xl" />
-            <div className={`relative rounded-[28px] border ${border} bg-[#111115]/90 p-3 shadow-2xl shadow-black/50 sm:p-4`}>
+            <div
+              className={`relative rounded-[28px] border ${border} bg-[#111115]/90 p-3 shadow-2xl shadow-black/50 sm:p-4`}
+            >
               <div className="mb-3 flex items-center justify-between px-2 py-1.5">
                 <div className="flex items-center gap-3">
                   <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.06] text-[#ffc0a8]">
                     <Sparkles size={15} />
                   </span>
                   <div>
-                    <p className="text-xs font-medium text-white">Image preview</p>
-                    <p className="mt-0.5 text-[10px] text-zinc-500">A little before, a little after</p>
+                    <p className="text-xs font-medium text-white">
+                      Image preview
+                    </p>
+                    <p className="mt-0.5 text-[10px] text-zinc-500">
+                      A little before, a little after
+                    </p>
                   </div>
                 </div>
                 <span className="rounded-full border border-emerald-300/15 bg-emerald-300/[0.06] px-2.5 py-1 text-[10px] text-emerald-200">
@@ -198,8 +208,12 @@ export default function LandingContent() {
                 <Wand2 size={16} />
               </div>
               <div>
-                <p className="text-xs font-medium text-white">One simple prompt</p>
-                <p className="mt-0.5 text-[10px] text-zinc-500">A whole new direction</p>
+                <p className="text-xs font-medium text-white">
+                  One simple prompt
+                </p>
+                <p className="mt-0.5 text-[10px] text-zinc-500">
+                  A whole new direction
+                </p>
               </div>
             </div>
           </div>
@@ -232,43 +246,53 @@ export default function LandingContent() {
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
-            {features.map(({ slug, title, description, icon: Icon, image }, index) => (
-              <Link
-                key={slug}
-                href={`/features/${slug}`}
-                className={`group relative min-h-[290px] overflow-hidden rounded-[22px] border border-white/[0.08] bg-[#151518] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#ff9a74]/35 sm:p-6 ${index < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}
-              >
-                <Image
-                  src={imageUrl(image, 900)}
-                  alt=""
-                  fill
-                  unoptimized
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover opacity-[0.22] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.34]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#101014] via-[#101014]/65 to-[#101014]/10" />
-                <div className="relative flex min-h-[242px] flex-col">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-black/25 text-[#ffc0a8] backdrop-blur">
-                    <Icon size={18} />
-                  </span>
-                  <div className="mt-auto">
-                    <h3 className="text-lg font-semibold text-white">{title}</h3>
-                    <p className="mt-2 max-w-sm text-sm leading-6 text-zinc-300/75">
-                      {description}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-[#ffad8b]">
-                      See what it can do{" "}
-                      <ChevronRight size={14} className="transition group-hover:translate-x-1" />
+            {features.map(
+              ({ slug, title, description, icon: Icon, image }, index) => (
+                <Link
+                  key={slug}
+                  href={`/features/${slug}`}
+                  className={`group relative min-h-[290px] overflow-hidden rounded-[22px] border border-white/[0.08] bg-[#151518] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#ff9a74]/35 sm:p-6 ${index < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}
+                >
+                  <Image
+                    src={imageUrl(image, 900)}
+                    alt=""
+                    fill
+                    unoptimized
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover opacity-[0.22] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.34]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#101014] via-[#101014]/65 to-[#101014]/10" />
+                  <div className="relative flex min-h-[242px] flex-col">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-black/25 text-[#ffc0a8] backdrop-blur">
+                      <Icon size={18} />
                     </span>
+                    <div className="mt-auto">
+                      <h3 className="text-lg font-semibold text-white">
+                        {title}
+                      </h3>
+                      <p className="mt-2 max-w-sm text-sm leading-6 text-zinc-300/75">
+                        {description}
+                      </p>
+                      <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-[#ffad8b]">
+                        See what it can do{" "}
+                        <ChevronRight
+                          size={14}
+                          className="transition group-hover:translate-x-1"
+                        />
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ),
+            )}
           </div>
         </div>
       </section>
 
-      <section id="playground" className="scroll-mt-20 border-y border-white/[0.07] bg-[#0d0d10]">
+      <section
+        id="playground"
+        className="scroll-mt-20 border-y border-white/[0.07] bg-[#0d0d10]"
+      >
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
           <div>
             <SectionHeading
@@ -302,11 +326,13 @@ export default function LandingContent() {
                 Choose an edit
               </p>
               <div className="flex flex-wrap gap-2">
-                {([
-                  { id: "remove", label: "Remove background", icon: Eraser },
-                  { id: "fill", label: "Generative fill", icon: Wand2 },
-                  { id: "restore", label: "Enhance", icon: ImagePlus },
-                ] as const).map(({ id, label, icon: Icon }) => (
+                {(
+                  [
+                    { id: "remove", label: "Remove background", icon: Eraser },
+                    { id: "fill", label: "Generative fill", icon: Wand2 },
+                    { id: "restore", label: "Enhance", icon: ImagePlus },
+                  ] as const
+                ).map(({ id, label, icon: Icon }) => (
                   <button
                     key={id}
                     type="button"
@@ -317,7 +343,10 @@ export default function LandingContent() {
                     aria-pressed={effect === id}
                     className={`inline-flex items-center gap-2 rounded-xl border px-3 py-2.5 text-xs transition ${effect === id ? "border-[#ff9a74]/35 bg-[#ff9a74]/[0.08] text-white" : "border-white/10 text-zinc-400 hover:border-white/20 hover:text-white"}`}
                   >
-                    <Icon size={14} className={effect === id ? "text-[#ffb18e]" : ""} />
+                    <Icon
+                      size={14}
+                      className={effect === id ? "text-[#ffb18e]" : ""}
+                    />
                     {label}
                   </button>
                 ))}
@@ -359,7 +388,8 @@ export default function LandingContent() {
               </div>
               {demoRan && (
                 <div className="absolute bottom-4 right-4 flex items-center gap-2 rounded-full border border-white/15 bg-black/55 px-3 py-2 text-xs text-white backdrop-blur">
-                  <Check size={14} className="text-emerald-300" /> Preview applied
+                  <Check size={14} className="text-emerald-300" /> Preview
+                  applied
                 </div>
               )}
             </div>
@@ -373,7 +403,9 @@ export default function LandingContent() {
       <section id="pricing" className="scroll-mt-20">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
           <div className="mx-auto mb-12 max-w-xl text-center">
-            <p className={`text-[11px] font-semibold uppercase tracking-[0.2em] ${accent}`}>
+            <p
+              className={`text-[11px] font-semibold uppercase tracking-[0.2em] ${accent}`}
+            >
               Simple pricing
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
@@ -383,6 +415,7 @@ export default function LandingContent() {
               Explore the studio for free. Choose a plan when you need more.
             </p>
           </div>
+
           <div className="grid gap-4 md:grid-cols-3">
             {[
               {
@@ -390,7 +423,11 @@ export default function LandingContent() {
                 price: "$0",
                 suffix: "forever",
                 description: "For curious creators.",
-                items: ["25 AI edits / month", "All core AI tools", "Standard exports"],
+                items: [
+                  "25 AI edits / month",
+                  "All core AI tools",
+                  "Standard exports",
+                ],
                 featured: false,
               },
               {
@@ -398,7 +435,12 @@ export default function LandingContent() {
                 price: "$19",
                 suffix: "per month",
                 description: "For creators in their flow.",
-                items: ["1,000 AI edits / month", "High-resolution exports", "Commercial usage", "Priority processing"],
+                items: [
+                  "1,000 AI edits / month",
+                  "High-resolution exports",
+                  "Commercial usage",
+                  "Priority processing",
+                ],
                 featured: true,
               },
               {
@@ -406,7 +448,12 @@ export default function LandingContent() {
                 price: "Let’s talk",
                 suffix: "custom plan",
                 description: "For teams at any scale.",
-                items: ["Custom edit volume", "Team workspaces", "API access & support", "Dedicated success team"],
+                items: [
+                  "Custom edit volume",
+                  "Team workspaces",
+                  "API access & support",
+                  "Dedicated success team",
+                ],
                 featured: false,
               },
             ].map((plan) => (
@@ -424,7 +471,9 @@ export default function LandingContent() {
                 </div>
                 <p className="mt-2 text-sm text-zinc-400">{plan.description}</p>
                 <div className="mt-6 flex items-baseline gap-2">
-                  <span className="text-3xl font-semibold tracking-tight text-white">{plan.price}</span>
+                  <span className="text-3xl font-semibold tracking-tight text-white">
+                    {plan.price}
+                  </span>
                   <span className="text-xs text-zinc-500">{plan.suffix}</span>
                 </div>
                 <Button
@@ -433,13 +482,18 @@ export default function LandingContent() {
                   variant={plan.featured ? "default" : "outline"}
                 >
                   <Link href="/studio">
-                    {plan.name === "Enterprise" ? "Contact sales" : "Get started"}
+                    {plan.name === "Enterprise"
+                      ? "Contact sales"
+                      : "Get started"}
                     <ArrowRight size={14} className="ml-2" />
                   </Link>
                 </Button>
                 <ul className="mt-6 space-y-3 border-t border-white/[0.08] pt-6">
                   {plan.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2.5 text-sm text-zinc-400">
+                    <li
+                      key={item}
+                      className="flex items-center gap-2.5 text-sm text-zinc-400"
+                    >
                       <Check size={15} className={`shrink-0 ${accent}`} />
                       {item}
                     </li>
@@ -449,7 +503,8 @@ export default function LandingContent() {
             ))}
           </div>
           <p className="mt-7 text-center text-xs text-zinc-600">
-            AI transformations are powered by Cloudinary. Plans shown are illustrative.
+            AI transformations are powered by Cloudinary. Plans shown are
+            illustrative.
           </p>
         </div>
       </section>

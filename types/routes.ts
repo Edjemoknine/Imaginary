@@ -1,11 +1,11 @@
 export type GalleryPageProps = {
-  searchParams: {
-    search?: string;
-  };
+  searchParams: Promise<{
+    search?: string | string[];
+  }>;
 };
 
 export type AlbumPageProps = {
-  params: {
+  params: Promise<{
     albumName: string;
-  };
+  }>;
 };

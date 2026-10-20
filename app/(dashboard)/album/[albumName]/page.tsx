@@ -5,7 +5,8 @@ import Link from "next/link";
 import type { SearchResult } from "@/types/gallery";
 import type { AlbumPageProps } from "@/types/routes";
 import { albumAction } from "@/actions/album";
-const Album = async ({ params: { albumName } }: AlbumPageProps) => {
+const Album = async ({ params }: AlbumPageProps) => {
+  const { albumName } = await params;
   const results = await albumAction(albumName);
 
   return (

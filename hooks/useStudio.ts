@@ -21,9 +21,17 @@ import type {
 export function useStudio({
   requestedTool,
   requestedPublicId,
+  canUseAiTools,
 }: StudioOptions) {
   const [activeTool, setActiveTool] = useState<ToolSlug>(
-    isToolSlug(requestedTool) ? requestedTool : "background-removal",
+    isToolSlug(requestedTool) &&
+      (canUseAiTools ||
+        tools.find((tool) => tool.slug === requestedTool)?.category ===
+          "Basic")
+      ? requestedTool
+      : canUseAiTools
+        ? "background-removal"
+        : "basic-fit",
   );
   const [aspectRatio, setAspectRatio] = useState<AspectRatio>("1:1");
   const [prompt, setPrompt] = useState("");
@@ -483,6 +491,15 @@ export function useStudio({
     },
     actions: {
       setActiveTool: (tool: ToolSlug) => {
+        if (
+          !canUseAiTools &&
+          tools.find((studioTool) => studioTool.slug === tool)?.category !==
+            "Basic"
+        ) {
+          setErrorMessage("Upgrade to Pro to use AI tools.");
+          return;
+        }
+
         setActiveTool(tool);
         setStatus("idle");
         setErrorMessage("");

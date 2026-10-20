@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^7.9.17",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
@@ -37,7 +38,7 @@
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   },
-   "engines": {
+  "engines": {
     "node": "24.x"
   }
 }
